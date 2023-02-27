@@ -23,5 +23,6 @@ public class Doctor {
     private String address;
     @Column(unique = true)
     private String email;
+    private String password;
 
 }

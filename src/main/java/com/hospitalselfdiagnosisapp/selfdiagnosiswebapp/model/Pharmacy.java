@@ -19,4 +19,5 @@ public class Pharmacy {
     @Column(unique = true)
     private String email;
     private int telephone;
+    private String password;
 }
