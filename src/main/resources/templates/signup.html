@@ -27,44 +27,44 @@
                     <h4>St. Mary's Hospital Clinic</h4>
                     <h4>Patient SignUp</h4>
                 </div>
-                <form action="">
+                <form action=""  th:action="@{/register}" method="post">
                     <div class="my-2">
                         <label for="name" class="form-label">Full Name :</label>
                     </div>
                     <div class="my-2">
-                        <input class="form-control"   type="text" id="name" placeholder="Enter name" required="required">
+                        <input class="form-control"  th:field="*{name}"  type="text" id="name" placeholder="Enter name" required="required">
                     </div>
                     <div>
                         <label class="form-label">Gender :</label>
                     </div>
                     <div class="my-2 px-2">
-                        <label for="male"><input type="radio" name="gender" id="male" value="male" required>Male</label>
-                        <label for="female"><input type="radio" name="gender" id="female" value="female">Female</label>
-                        <label for="Binary"><input type="radio" name="gender" id="binary" value="binary">Binary</label>
+                        <label for="male"><input type="radio" name="gender" id="male" value="male" th:field="*{gender}"required>Male</label>
+                        <label for="female"><input type="radio" name="gender" id="female" value="female" th:field="*{gender}">Female</label>
+                        <label for="Binary"><input type="radio" name="gender" id="binary" value="binary" th:field="*{gender}">Binary</label>
                     </div>
                     <div class="my-2">
                         <label for="email" class="form-label">Email :</label>
                     </div>
                     <div class="my-2">
-                        <input type="text" class="form-control"  id="email" placeholder="johndoe@example.com" required>
+                        <input type="text" class="form-control" th:field="*{email}" id="email" placeholder="johndoe@example.com" required>
                     </div>
                     <div class="my-2">
                         <label for="dob" class="form-label">Date of Birth :</label>
                     </div>
                     <div class="my-2">
-                        <input type="date"  class="form-control"  id="dob"  required>
+                        <input type="date"  class="form-control"  id="dob" th:field="*{dob}" required>
                     </div>
                     <div class="my-2">
                         <label for="address" class="form-label" >Address :</label>
                     </div>
                     <div class="my-2">
-                        <input type="text" class="form-control" id="address" placeholder="e.g Nakuru" required>
+                        <input type="text" class="form-control" id="address" th:field="*{address}"placeholder="e.g Nakuru" required>
                     </div>
                     <div class="my-2">
                         <label for="pwd" class="form-label" >Password :</label>
                     </div>
                     <div class="my-2">
-                        <input type="password" class="form-control" id="pwd" placeholder="enter password" required>
+                        <input type="password" class="form-control" id="pwd" th:field="*{password}" placeholder="enter password" required>
                     </div>
                     <div class="my-2">
                         <label for="repwd" class="form-label" >Confirm Password :</label>
