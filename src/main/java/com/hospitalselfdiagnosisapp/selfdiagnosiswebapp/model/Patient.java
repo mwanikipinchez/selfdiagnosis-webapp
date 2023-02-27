@@ -23,6 +23,7 @@ public class Patient {
     private String address;
     @Column(unique = true)
     private String email;
+    private String password;
 
 
 
