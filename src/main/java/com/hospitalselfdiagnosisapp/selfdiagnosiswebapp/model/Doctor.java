@@ -20,7 +20,7 @@ public class Doctor {
     private int telephone;
     private int dob;
     private int doctorNumber;
-    private String location;
+    private String address;
     @Column(unique = true)
     private String email;
 
