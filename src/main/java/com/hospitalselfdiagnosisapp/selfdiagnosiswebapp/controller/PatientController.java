@@ -2,20 +2,32 @@ package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.controller;
 
 
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Patient;
+import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.repository.PatientRepository;
+import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.service.PatientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/patient")
+@Controller
+//@RestController
+//@RequestMapping("/patient")
 public class PatientController {
+    private PatientService patientService;
+    private final PatientRepository patientRepository;
 
-//    @GetMapping("/patient")
-//    public String patient() {
-//        return "This is patient controller";
-//    }
+
+    @Autowired
+    public PatientController(PatientService patientService,
+                             PatientRepository patientRepository){
+        this.patientService = patientService;
+        this.patientRepository = patientRepository;
+    }
+
+    @GetMapping("/patient")
+    public String patient() {
+        return "This is patient controller";
+    }
 
 
     @GetMapping("/register")
@@ -24,8 +36,9 @@ public class PatientController {
         return "signup";
     }
 
-    @PostMapping("/register")
-    public String save(Patient patient){
+    @PostMapping("/save")
+    public String save(@ModelAttribute Patient patient){
+        patientService.newPatient(patient);
 
         return "redirect:/login";
     }

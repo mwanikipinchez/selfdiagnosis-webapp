@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>signup</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +27,7 @@
                     <h4>St. Mary's Hospital Clinic</h4>
                     <h4>Patient SignUp</h4>
                 </div>
-                <form action=""  th:action="@{/register}" method="post">
+                <form action=""  th:action="@{/save}" method="post" th:object="${patient}">
                     <div class="my-2">
                         <label for="name" class="form-label">Full Name :</label>
                     </div>
@@ -73,10 +73,10 @@
                         <input type="password" class="form-control" id="repwd" placeholder="re-enter password" required>
                     </div>
                     <div class="signup-btn">
-                        <button class="btn btn-primary my-3">Register</button>
+                        <button type="submit" class="btn btn-primary my-3">Register</button>
                     </div>
                 </form>
-                <p>Already have an account?<a href="#" >login here</a></p>
+                <p>Already have an account?<a href="" th:href="@{/login}" >login here</a></p>
                 
                 
             </div>

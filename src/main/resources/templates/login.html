@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html  lang="en"
+	   xmlns:th="http://www.thymeleaf.org"
+>
 <head>
 	<title>Login Page</title>
 	<meta charset="utf-8">
@@ -60,7 +62,7 @@
 			<a href="#" class="btn btn-google"><i class="fab fa-google"></i> Google</a>
 			<a href="#" class="btn btn-facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
 		</form>
-		<p>Don't have an account? <a href="#" >Signup here</a> </p>
+		<p>Don't have an account? <a href="" th:href="@{/register}" >Signup here</a> </p>
 	</div>
 
 </body>

@@ -19,7 +19,15 @@
     <div class="container-fluid">
         <ul class="nav justify-content-end">
             <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
-            <li class="nav-item"><a class="nav-link" href="" th:href="@{/templates/login.html}">Login<i class="fa-solid fa-right-to-bracket"></i> </a></li>
+            <li class="nav-item">
+
+
+                <form action="" th:action="@{/login}" method="get">
+                    <button type="submit" class="btn btn-success">Login  </button>
+                </form>
+
+
+            </li>
             
         </ul>
     </div>
