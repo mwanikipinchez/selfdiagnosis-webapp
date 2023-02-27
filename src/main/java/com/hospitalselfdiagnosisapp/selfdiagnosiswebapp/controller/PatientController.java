@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 //@RestController
-//@RequestMapping("/patient")
+@RequestMapping("/")
 public class PatientController {
     private PatientService patientService;
     private final PatientRepository patientRepository;
