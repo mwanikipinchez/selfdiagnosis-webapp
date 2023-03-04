@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en-us" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org
+>
     <head>
         <title>St. Mary clinic   </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +16,7 @@
         <!--  -->
     </head>
     <body>
-    <div class="container-fluid">
+    <div class="container-fluid" th:object="$patient">
         <nav class="navbar navbar-expand-sm bg-light">
 
             <div class="container-fluid">
@@ -81,9 +83,9 @@
                                 <i class="fa-solid fa-user"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><span class="dropdown-item-text">Name</span></li>
+                                <li><span th:text="${patient.name}"> </span></li>
                               <li><a class="dropdown-item" href="#">Profile</a></li>
-                              <li><a class="dropdown-item" href="#">Logout</a></li>
+                              <li><a class="dropdown-item" href="/patientLandingPage?logout">Logout</a></li>
                               
                             </ul>
                           </div>
@@ -92,7 +94,8 @@
                        
     
                     </div>
-                    <h4 class="text-center">Welcome th:text="${patient.name}" th:object="${patient}" </h4>
+                    <h4 class="text-center">Welcome
+                        <span  th:text="${patient.name}" ></span> </h4>
                    
                 </div>
     
@@ -164,5 +167,6 @@
         
         
 </div>
+    </div>
     </body>
 </html>
