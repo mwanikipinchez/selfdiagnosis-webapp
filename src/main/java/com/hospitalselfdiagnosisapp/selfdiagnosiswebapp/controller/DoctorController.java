@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class DoctorController {
 
-    @GetMapping("/doctor")
-    public String doctor(){
-        return "This is doctors controller";
+    @GetMapping("/index")
+    public String index(){
+        return "index.html";
     }
 }

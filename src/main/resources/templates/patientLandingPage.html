@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en-us" xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
 >
     <head>
         <title>St. Mary clinic   </title>
@@ -16,7 +16,7 @@
         <!--  -->
     </head>
     <body>
-    <div class="container-fluid" th:object="$patient">
+    <div class="container-fluid" >
         <nav class="navbar navbar-expand-sm bg-light">
 
             <div class="container-fluid">
@@ -27,7 +27,7 @@
                     <li class="nav-item"><input type="text" placeholder="search" name="search"></li>
                     <li> <a class="nav-link" href="#"> Help </a></li>
                     <li> <a class="nav-link" href="#"> Donate </a></li>
-                    <li><a class="nav-link" href="#" >Logout</a></li>
+                    <li><a class="nav-link" th:href="@{/logout}" >Logout</a></li>
                 </ul>
             </div>
 
@@ -35,7 +35,7 @@
         </nav>
 
 
-         <div class="container-fluid">
+         <div class="container-fluid" th:object="${patient}">
             <div class="row mt-0">
 
         
@@ -83,9 +83,9 @@
                                 <i class="fa-solid fa-user"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><span th:text="${patient.name}"> </span></li>
+                                <li th:object="${patient}"><span th:text="${patient.name}"> </span></li>
                               <li><a class="dropdown-item" href="#">Profile</a></li>
-                              <li><a class="dropdown-item" href="/patientLandingPage?logout">Logout</a></li>
+                              <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                               
                             </ul>
                           </div>
@@ -94,7 +94,7 @@
                        
     
                     </div>
-                    <h4 class="text-center">Welcome
+                    <h4 class="text-center" th:object="${patient}">Welcome
                         <span  th:text="${patient.name}" ></span> </h4>
                    
                 </div>

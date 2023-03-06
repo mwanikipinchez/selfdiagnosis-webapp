@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en-us" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,13 +22,10 @@
         <ul class="nav justify-content-end">
             <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
             <li class="nav-item">
-
-
-                <form action="" th:action="@{/register}" method="get">
-                    <button type="submit" class="btn btn-success">Login  </button>
-                </form>
-
-
+                <a  class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-link" th:href="@{/register}">Register</a>
             </li>
             
         </ul>

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 //@RestController
 @RequestMapping("/")
@@ -24,9 +26,9 @@ public class PatientController {
         this.patientRepository = patientRepository;
     }
 
-    @GetMapping("/patient")
-    public String patient() {
-        return "This is patient controller";
+    @GetMapping("/")
+    public String index() {
+        return "index.html";
     }
 
 
@@ -49,7 +51,16 @@ public class PatientController {
     }
     @GetMapping("/home")
     public String landingPage(Model model){
-        model.addAttribute("patient", new Patient());
+        Patient patient = new Patient();
+        model.addAttribute("patient", patient);
         return "patientLandingPage.html";
+    }
+
+    @GetMapping("/patients")
+    public String allPatients(Model model){
+        List<Patient> patients = patientService.allPatient();
+        model.addAttribute("patients", patients);
+        return "users-list.html";
+
     }
 }
