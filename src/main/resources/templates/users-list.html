@@ -38,6 +38,7 @@
       <th>DOB</th>
       <th>Address</th>
       <th>Email</th>
+      <th>Date Registered</th>
     </tr>
     </thead>
     <tbody>
@@ -47,6 +48,8 @@
       <td th:text = "${patient.dob}"></td>
       <td th:text = "${patient.address}"></td>
       <td th:text = "${patient.email}"></td>
+      <td th:text = "${patient.role}"></td>
+      <td th:text = "${patient.dateRegistered}"></td>
     </tr>
     </tbody>
   </table>

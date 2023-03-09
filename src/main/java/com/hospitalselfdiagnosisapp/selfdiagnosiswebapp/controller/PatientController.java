@@ -1,13 +1,17 @@
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.controller;
 
 
+import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.PatientDTO;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Patient;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.repository.PatientRepository;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.service.PatientService;
+import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.service.PatientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
@@ -16,38 +20,65 @@ import java.util.List;
 @RequestMapping("/")
 public class PatientController {
     private PatientService patientService;
-    private final PatientRepository patientRepository;
+    private PatientDTO patientDTO;
+
+
 
 
     @Autowired
-    public PatientController(PatientService patientService,
-                             PatientRepository patientRepository){
+    public PatientController(PatientService patientService){
         this.patientService = patientService;
-        this.patientRepository = patientRepository;
+
     }
 
     @GetMapping("/")
     public String index() {
-        return "index.html";
+        return "index";
     }
 
+
+//    @GetMapping("/register")
+//    public String registrationForm(Model model) {
+//        model.addAttribute("patient", new Patient());
+//        return "PatientSignup";
+//    }
 
     @GetMapping("/register")
-    public String registrationForm(Model model) {
-        model.addAttribute("patient", new Patient());
-        return "PatientSignup.html";
+    public String registrationForm(Model model){
+        PatientDTO patient = new PatientDTO();
+        model.addAttribute("patient", patient);
+        return "PatientSignup";
     }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute Patient patient){
-        patientService.newPatient(patient);
+//    @PostMapping("/save")
+//    public String save(@ModelAttribute Patient patient){
+//        patientServiceImpl.newPatient(patient);
+//
+//        return "redirect:/home";
+//    }
+// handler method to handle user registration form submit request
+@PostMapping("/save")
+public String registration(@Valid @ModelAttribute("user") PatientDTO patientDTO, BindingResult result, Model model){
+    Patient existingPatient = patientService.findByEmail(patientDTO.getEmail());
 
-        return "redirect:/home";
+    if(existingPatient != null && existingPatient.getEmail() != null && !existingPatient.getEmail().isEmpty()){
+        result.rejectValue("email", null,
+                "There is already an account registered with the same email");
     }
+
+    if(result.hasErrors()){
+        model.addAttribute("patient", patientDTO);
+        return "/register";
+    }
+
+    patientService.newPatient(patientDTO);
+    return "redirect:/register?success";
+}
+
 
     @GetMapping("/login")
     public String login(){
-        return "login.html";
+        return "login";
     }
     @GetMapping("/home")
     public String landingPage(Model model){
@@ -58,9 +89,9 @@ public class PatientController {
 
     @GetMapping("/patients")
     public String allPatients(Model model){
-        List<Patient> patients = patientService.allPatient();
+        List<PatientDTO> patients = patientService.findAllUsers();
         model.addAttribute("patients", patients);
-        return "users-list.html";
+        return "users-list";
 
     }
 }

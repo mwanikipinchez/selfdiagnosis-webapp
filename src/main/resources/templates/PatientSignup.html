@@ -33,6 +33,8 @@
                     </div>
                     <div class="my-2">
                         <input class="form-control"  th:field="*{name}"  type="text" id="name" placeholder="Enter name" required="required">
+                        <p th:errors = "*{name}" class="text-danger"
+                           th:if="${#fields.hasErrors('name')}"></p>
                     </div>
                     <div>
                         <label class="form-label">Gender :</label>
@@ -41,33 +43,44 @@
                         <label for="male"><input type="radio" name="gender" id="male" value="male" th:field="*{gender}"required>Male</label>
                         <label for="female"><input type="radio" name="gender" id="female" value="female" th:field="*{gender}">Female</label>
                         <label for="Binary"><input type="radio" name="gender" id="binary" value="binary" th:field="*{gender}">Binary</label>
+                        <p th:errors = "*{gender}" class="text-danger"
+                           th:if="${#fields.hasErrors('gender')}"></p>
                     </div>
                     <div class="my-2">
                         <label for="email" class="form-label">Email :</label>
                     </div>
                     <div class="my-2">
                         <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="johndoe@example.com" required>
+                        <p th:errors = "*{email}" class="text-danger"
+                           th:if="${#fields.hasErrors('email')}"></p>
                     </div>
                     <div class="my-2">
                         <label for="dob" class="form-label">Date of Birth :</label>
                     </div>
                     <div class="my-2">
                         <input type="date"  class="form-control"  id="dob" th:field="*{dob}" required>
+                        <p th:errors = "*{dob}" class="text-danger"
+                           th:if="${#fields.hasErrors('dob')}"></p>
                     </div>
                     <div class="my-2">
                         <label for="address" class="form-label" >Address :</label>
                     </div>
                     <div class="my-2">
                         <input type="text" class="form-control" id="address" th:field="*{address}"placeholder="e.g Nakuru" required>
+                        <p th:errors = "*{address}" class="text-danger"
+                           th:if="${#fields.hasErrors('address')}"></p>
                     </div>
                     <div class="my-2">
                         <label for="pwd" class="form-label" >Password :</label>
                     </div>
                     <div class="my-2">
                         <input type="password" class="form-control" id="pwd" th:field="*{password}" placeholder="enter password" required>
+                        <p th:errors = "*{password}" class="text-danger"
+                           th:if="${#fields.hasErrors('password')}"></p>
                     </div>
                     <div class="my-2">
                         <label for="repwd" class="form-label" >Confirm Password :</label>
+
                     </div>
                     <div class="my-2">
                         <input type="password" class="form-control" id="repwd" placeholder="re-enter password" required>

@@ -15,14 +15,21 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private int idNo;
+    @Column(nullable = false)
     private int telephone;
+    @Column(nullable = false)
     private int dob;
+    @Column(nullable = false)
     private int doctorNumber;
+    @Column(nullable = false)
     private String address;
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
 
 }

@@ -94,8 +94,17 @@
                        
     
                     </div>
-                    <h4 class="text-center" th:object="${patient}">Welcome
-                        <span  th:text="${patient.name}" ></span> </h4>
+                    <form action="#" th:object="${patient}">
+                        <label>
+                            Welcome <input type="text" th:value="*{name}">
+                        </label>
+
+<!--                        <h4 class="text-center">Welcome-->
+<!--                            <span  th:text="${patient.name}" ></span>-->
+<!--                        </h4>-->
+
+                    </form>
+
                    
                 </div>
     
