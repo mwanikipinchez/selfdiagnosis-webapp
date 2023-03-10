@@ -104,6 +104,11 @@ public List<PatientDTO> findAllUsers() {
         patientRepository.save(patient);
     }
 
+    private Role checkRoleExist(){
+        Role role = new Role();
+        role.setName("ADMIN");
+        return roleRepository.save(role);
+    }
 
 
     //    deleting a patient from the db
@@ -112,10 +117,6 @@ public List<PatientDTO> findAllUsers() {
         patientRepository.deleteById(id);
     }
 
-    private Role checkRoleExist(){
-        Role role = new Role();
-        role.setName("ROLE_ADMIN");
-        return roleRepository.save(role);
-    }
+
 
 }

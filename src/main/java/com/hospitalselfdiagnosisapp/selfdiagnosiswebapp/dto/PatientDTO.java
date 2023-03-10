@@ -26,7 +26,7 @@ public class PatientDTO {
     @NotEmpty
     private String gender;
 
-    @NotEmpty
+//    @NotEmpty
     private LocalDate dob;
     @NotEmpty
     private String address;

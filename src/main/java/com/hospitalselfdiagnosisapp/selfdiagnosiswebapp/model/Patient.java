@@ -34,7 +34,7 @@ public class Patient {
     @Column(nullable = false)
     private String password;
     private LocalDateTime dateRegistered = LocalDateTime.now();
-//    private String role = "USER";
+    private String role = "USER";
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)

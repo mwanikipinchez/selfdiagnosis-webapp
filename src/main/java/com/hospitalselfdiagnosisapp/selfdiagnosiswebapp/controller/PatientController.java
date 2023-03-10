@@ -17,16 +17,17 @@ import java.util.List;
 
 @Controller
 //@RestController
-@RequestMapping("/")
+//@RequestMapping("/")
 public class PatientController {
     private PatientService patientService;
-    private PatientDTO patientDTO;
+//    private PatientDTO patientDTO;
 
 
 
 
     @Autowired
     public PatientController(PatientService patientService){
+
         this.patientService = patientService;
 
     }
@@ -58,7 +59,7 @@ public class PatientController {
 //    }
 // handler method to handle user registration form submit request
 @PostMapping("/save")
-public String registration(@Valid @ModelAttribute("user") PatientDTO patientDTO, BindingResult result, Model model){
+public String registration(@Valid @ModelAttribute("patient") PatientDTO patientDTO, BindingResult result, Model model){
     Patient existingPatient = patientService.findByEmail(patientDTO.getEmail());
 
     if(existingPatient != null && existingPatient.getEmail() != null && !existingPatient.getEmail().isEmpty()){
@@ -68,11 +69,11 @@ public String registration(@Valid @ModelAttribute("user") PatientDTO patientDTO,
 
     if(result.hasErrors()){
         model.addAttribute("patient", patientDTO);
-        return "/register";
+        return "PatientSignup";
     }
 
     patientService.newPatient(patientDTO);
-    return "redirect:/register?success";
+    return "redirect:/home";
 }
 
 
