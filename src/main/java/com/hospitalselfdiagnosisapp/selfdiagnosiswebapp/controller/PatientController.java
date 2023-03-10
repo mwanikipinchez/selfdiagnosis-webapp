@@ -30,24 +30,24 @@ public class PatientController {
     }
 
 
-    @GetMapping("/register")
+    @GetMapping("/patient/register")
     public String registrationForm(Model model) {
         model.addAttribute("patient", new Patient());
         return "PatientSignup.html";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/patient/save")
     public String save(@ModelAttribute Patient patient){
         patientService.newPatient(patient);
 
         return "redirect:/home";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/patient/login")
     public String login(){
         return "login.html";
     }
-    @GetMapping("/home")
+    @GetMapping("/patient/home")
     public String landingPage(Model model){
         model.addAttribute("patient", new Patient());
         return "patientLandingPage.html";
