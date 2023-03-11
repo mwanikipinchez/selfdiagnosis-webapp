@@ -16,11 +16,11 @@ import org.springframework.validation.BindingResult;
 import java.util.List;
 
 @Controller
-//@RestController
-//@RequestMapping("/")
+
+@RequestMapping("/patient")
 public class PatientController {
     private PatientService patientService;
-//    private PatientDTO patientDTO;
+
 
 
 
@@ -32,10 +32,10 @@ public class PatientController {
 
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
+//    @GetMapping("/")
+//    public String index() {
+//        return "index";
+//    }
 
 
 //    @GetMapping("/register")
@@ -59,7 +59,8 @@ public class PatientController {
 //    }
 // handler method to handle user registration form submit request
 @PostMapping("/save")
-public String registration(@Valid @ModelAttribute("patient") PatientDTO patientDTO, BindingResult result, Model model){
+public String registration(@Valid @ModelAttribute("patient") PatientDTO patientDTO,
+                           BindingResult result, Model model){
     Patient existingPatient = patientService.findByEmail(patientDTO.getEmail());
 
     if(existingPatient != null && existingPatient.getEmail() != null && !existingPatient.getEmail().isEmpty()){
@@ -72,6 +73,7 @@ public String registration(@Valid @ModelAttribute("patient") PatientDTO patientD
         return "PatientSignup";
     }
 
+    model.addAttribute("patient", patientDTO);
     patientService.newPatient(patientDTO);
     return "redirect:/home";
 }
@@ -83,12 +85,12 @@ public String registration(@Valid @ModelAttribute("patient") PatientDTO patientD
     }
     @GetMapping("/home")
     public String landingPage(Model model){
-        Patient patient = new Patient();
+        PatientDTO patient = new PatientDTO();
         model.addAttribute("patient", patient);
         return "patientLandingPage.html";
     }
 
-    @GetMapping("/patients")
+    @GetMapping("/list")
     public String allPatients(Model model){
         List<PatientDTO> patients = patientService.findAllUsers();
         model.addAttribute("patients", patients);

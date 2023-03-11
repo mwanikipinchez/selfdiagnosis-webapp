@@ -15,7 +15,7 @@
         <script src="https://kit.fontawesome.com/3dbe25ee14.js" crossorigin="anonymous"></script>
         <!--  -->
     </head>
-    <body>
+    <body th:object="${patient}">
     <div class="container-fluid" >
         <nav class="navbar navbar-expand-sm bg-light">
 
@@ -27,7 +27,7 @@
                     <li class="nav-item"><input type="text" placeholder="search" name="search"></li>
                     <li> <a class="nav-link" href="#"> Help </a></li>
                     <li> <a class="nav-link" href="#"> Donate </a></li>
-                    <li><a class="nav-link" th:href="@{/logout}" >Logout</a></li>
+                    <li><a class="nav-link" th:href="@{/patient/logout}" >Logout</a></li>
                 </ul>
             </div>
 
@@ -94,16 +94,11 @@
                        
     
                     </div>
-                    <form action="#" th:object="${patient}">
-                        <label>
-                            Welcome <input type="text" th:value="*{name}">
-                        </label>
+                        <h4 class="text-center">Welcome
+                            <span  th:text="${patient.name}" ></span>
+                        </h4>
 
-<!--                        <h4 class="text-center">Welcome-->
-<!--                            <span  th:text="${patient.name}" ></span>-->
-<!--                        </h4>-->
 
-                    </form>
 
                    
                 </div>

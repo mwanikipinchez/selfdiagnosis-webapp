@@ -3,13 +3,11 @@ package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -30,6 +28,9 @@ public class PatientDTO {
     private LocalDate dob;
     @NotEmpty
     private String address;
+    @NotEmpty
+    private String dateRegistered;
+
     @NotEmpty(message= "Password should not be empty")
     private String password;
 }

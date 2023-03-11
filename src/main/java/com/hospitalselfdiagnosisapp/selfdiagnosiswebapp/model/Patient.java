@@ -1,9 +1,7 @@
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="patient_records")
@@ -34,7 +33,7 @@ public class Patient {
     @Column(nullable = false)
     private String password;
     private LocalDateTime dateRegistered = LocalDateTime.now();
-    private String role = "USER";
+
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
@@ -44,6 +43,7 @@ public class Patient {
             inverseJoinColumns = {@JoinColumn(name="ROLE_ID", referencedColumnName="ID")}
     )
     private List<Role> roles = new ArrayList<>();
+
 
 
 

@@ -96,7 +96,7 @@ public List<PatientDTO> findAllUsers() {
         patient.setEmail(patientDTO.getEmail());
         patient.setDob(patientDTO.getDob());
         patient.setPassword(passwordEncoder.encode(patientDTO.getPassword()));
-        Role role = roleRepository.findByName("ADMIN");
+        Role role = roleRepository.findByName("PATIENT");
         if(role == null){
             role = checkRoleExist();
         }
@@ -106,7 +106,7 @@ public List<PatientDTO> findAllUsers() {
 
     private Role checkRoleExist(){
         Role role = new Role();
-        role.setName("ADMIN");
+        role.setName("PATIENT");
         return roleRepository.save(role);
     }
 

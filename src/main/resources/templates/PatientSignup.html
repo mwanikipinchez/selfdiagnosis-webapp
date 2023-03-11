@@ -27,12 +27,12 @@
                     <h4>St. Mary's Hospital Clinic</h4>
                     <h4>Patient SignUp</h4>
                 </div>
-                <form action=""  th:action="@{/save}" method="post" th:object="${patient}">
+                <form  th:action="@{/patient/save}" method="post" th:object="${patient}">
                     <div class="my-2">
                         <label for="name" class="form-label">Full Name :</label>
                     </div>
                     <div class="my-2">
-                        <input class="form-control"  th:field="*{name}"  type="text" id="name" placeholder="Enter name" required="required">
+                        <input class="form-control"  th:field="*{name}"  type="text" id="name" placeholder="Enter name" >
                         <p th:errors = "*{name}" class="text-danger"
                            th:if="${#fields.hasErrors('name')}"></p>
                     </div>
@@ -40,7 +40,7 @@
                         <label class="form-label">Gender :</label>
                     </div>
                     <div class="my-2 px-2">
-                        <label for="male"><input type="radio" name="gender" id="male" value="male" th:field="*{gender}"required>Male</label>
+                        <label for="male"><input type="radio" name="gender" id="male" value="male" th:field="*{gender}">Male</label>
                         <label for="female"><input type="radio" name="gender" id="female" value="female" th:field="*{gender}">Female</label>
                         <label for="Binary"><input type="radio" name="gender" id="binary" value="binary" th:field="*{gender}">Binary</label>
                         <p th:errors = "*{gender}" class="text-danger"
@@ -50,7 +50,7 @@
                         <label for="email" class="form-label">Email :</label>
                     </div>
                     <div class="my-2">
-                        <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="johndoe@example.com" required>
+                        <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="johndoe@example.com" >
                         <p th:errors = "*{email}" class="text-danger"
                            th:if="${#fields.hasErrors('email')}"></p>
                     </div>
@@ -58,7 +58,7 @@
                         <label for="dob" class="form-label">Date of Birth :</label>
                     </div>
                     <div class="my-2">
-                        <input type="date"  class="form-control"  id="dob" th:field="*{dob}" required>
+                        <input type="date"  class="form-control"  id="dob" th:field="*{dob}" >
                         <p th:errors = "*{dob}" class="text-danger"
                            th:if="${#fields.hasErrors('dob')}"></p>
                     </div>
@@ -66,7 +66,7 @@
                         <label for="address" class="form-label" >Address :</label>
                     </div>
                     <div class="my-2">
-                        <input type="text" class="form-control" id="address" th:field="*{address}"placeholder="e.g Nakuru" required>
+                        <input type="text" class="form-control" id="address" th:field="*{address}"placeholder="e.g Nakuru" >
                         <p th:errors = "*{address}" class="text-danger"
                            th:if="${#fields.hasErrors('address')}"></p>
                     </div>
@@ -74,7 +74,7 @@
                         <label for="pwd" class="form-label" >Password :</label>
                     </div>
                     <div class="my-2">
-                        <input type="password" class="form-control" id="pwd" th:field="*{password}" placeholder="enter password" required>
+                        <input type="password" class="form-control" id="pwd" th:field="*{password}" placeholder="enter password" >
                         <p th:errors = "*{password}" class="text-danger"
                            th:if="${#fields.hasErrors('password')}"></p>
                     </div>
@@ -83,13 +83,13 @@
 
                     </div>
                     <div class="my-2">
-                        <input type="password" class="form-control" id="repwd" placeholder="re-enter password" required>
+                        <input type="password" class="form-control" id="repwd" placeholder="re-enter password" >
                     </div>
                     <div class="signup-btn">
                         <button type="submit" class="btn btn-primary my-3">Register</button>
                     </div>
                 </form>
-                <p>Already have an account?<a href="" th:href="@{/login}" >login here</a></p>
+                <p>Already have an account?<a href="" th:href="@{/patient/login}" >login here</a></p>
                 
                 
             </div>
