@@ -38,7 +38,7 @@ public class PatientController {
 //    }
 
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //    @GetMapping("/register")
 //    public String registrationForm(Model model) {
 //        model.addAttribute("patient", new Patient());
@@ -63,24 +63,24 @@ public class PatientController {
 public String registration(@Valid @ModelAttribute("patient") PatientDTO patientDTO,
                            BindingResult result, Model model){
     Patient existingPatient = patientService.findByEmail(patientDTO.getEmail());
-=======
-    @GetMapping("/patient/register")
-    public String registrationForm(Model model) {
-        model.addAttribute("patient", new Patient());
-        return "PatientSignup.html";
-    }
-
-    @PostMapping("/patient/save")
-    public String save(@ModelAttribute Patient patient){
-        patientService.newPatient(patient);
->>>>>>> master
+//=======
+//    @GetMapping("/patient/register")
+//    public String registrationForm(Model model) {
+//        model.addAttribute("patient", new Patient());
+//        return "PatientSignup.html";
+//    }
+//
+//    @PostMapping("/patient/save")
+//    public String save(@ModelAttribute Patient patient){
+//        patientService.newPatient(patient);
+//>>>>>>> master
 
     if(existingPatient != null && existingPatient.getEmail() != null && !existingPatient.getEmail().isEmpty()){
         result.rejectValue("email", null,
                 "There is already an account registered with the same email");
     }
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
     if(result.hasErrors()){
         model.addAttribute("patient", patientDTO);
         return "PatientSignup";
@@ -93,9 +93,9 @@ public String registration(@Valid @ModelAttribute("patient") PatientDTO patientD
 
 
     @GetMapping("/login")
-=======
-    @GetMapping("/patient/login")
->>>>>>> master
+//=======
+//    @GetMapping("/patient/login")
+//>>>>>>> master
     public String login(){
         return "login";
     }
