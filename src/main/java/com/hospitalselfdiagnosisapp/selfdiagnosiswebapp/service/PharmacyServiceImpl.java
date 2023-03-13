@@ -38,6 +38,7 @@ public class PharmacyServiceImpl implements PharmacyService{
                 passwordEncoder.encode(pharmacyDTO.getPassword()),
                 LocalDateTime.now(), Arrays.asList(new Role("Pharmacy")));
         return pharmacyRepository.save(pharmacy);
+
     }
 
     @Override

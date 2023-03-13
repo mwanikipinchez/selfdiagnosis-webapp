@@ -88,7 +88,7 @@ public String registration(@Valid @ModelAttribute("patient") PatientDTO patientD
 
     model.addAttribute("patient", patientDTO);
     patientService.newPatient(patientDTO);
-    return "redirect:/home";
+    return "redirect:/login";
 }
 
 
@@ -99,7 +99,7 @@ public String registration(@Valid @ModelAttribute("patient") PatientDTO patientD
     public String login(){
         return "login";
     }
-    @GetMapping("/patient/home")
+    @GetMapping("/home")
     public String landingPage(Model model){
         PatientDTO patient = new PatientDTO();
         model.addAttribute("patient", patient);

@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Setter
 @Getter
@@ -39,8 +42,9 @@ public class Pharmacy {
                     name = "PHARMACY_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(
                     name = "ROLE_ID", referencedColumnName = "ID"))
+    private List<Role> roles = new ArrayList<>();
 
-    private Collection< Role > roles;
+
 
 
     public Pharmacy(String name, String address, String email, int telephone,
@@ -51,7 +55,7 @@ public class Pharmacy {
         this.telephone = telephone;
         this.password = password;
         this.dateRegistered=dateRegistered;
-        this.roles=roles;
+        this.roles = (List<Role>) roles;
 
     }
 

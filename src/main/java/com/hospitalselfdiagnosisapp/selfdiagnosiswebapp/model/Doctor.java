@@ -5,8 +5,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
-
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -47,7 +48,7 @@ public class Doctor {
             inverseJoinColumns = @JoinColumn(
                     name = "ROLE_ID", referencedColumnName = "ID"))
 
-    private Collection< Role > roles;
+    private List<Role> roles = new ArrayList<>();
 
     public Doctor(String name, String gender, int idNo, int telephone,
                   LocalDate dob, String doctorNumber, String address,
@@ -63,7 +64,8 @@ public class Doctor {
         this.email=email;
         this.password=password;
         this.dateRegistered=dateRegistered;
-        this.roles=roles;
+        this.roles= (List<Role>) roles;
     }
+
 
 }

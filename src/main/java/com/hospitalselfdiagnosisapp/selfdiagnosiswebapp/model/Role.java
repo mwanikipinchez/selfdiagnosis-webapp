@@ -27,6 +27,8 @@ public class Role {
 
     @ManyToMany(mappedBy="roles")
     private List<Patient> patients;
+    @ManyToMany(mappedBy="roles")
     private List<Doctor> doctors;
+    @ManyToMany(mappedBy="roles")
     private List<Pharmacy> pharmacy;
 }

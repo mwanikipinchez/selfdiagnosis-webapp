@@ -30,9 +30,11 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register").permitAll()
-                                .requestMatchers("/").permitAll()
-                                .requestMatchers("/").permitAll()
+                        authorize.requestMatchers("/patient/register").permitAll()
+                                .requestMatchers("/patient/login").permitAll()
+                                .requestMatchers("/patient/**").hasRole("PATIENT")
+                                .requestMatchers("/doctor/**").hasRole("DOCTOR")
+                                .requestMatchers("/pharmacy/**").hasRole("PHARMACY")
                                 .requestMatchers("/save").permitAll()
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/home").permitAll()

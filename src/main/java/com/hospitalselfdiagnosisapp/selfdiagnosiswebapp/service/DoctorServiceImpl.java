@@ -5,6 +5,7 @@ import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Doctor;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Role;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,10 +22,11 @@ import java.util.stream.Collectors;
 
 
 @Service
+@Primary
 public class DoctorServiceImpl implements DoctorService {
     private DoctorRepository doctorRepository;
 
-    @Autowired
+
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
@@ -45,6 +47,7 @@ public class DoctorServiceImpl implements DoctorService {
                 LocalDateTime.now(), Arrays.asList(new Role("DOCTOR")));
 
         return doctorRepository.save(doctor);
+
 
     }
 
