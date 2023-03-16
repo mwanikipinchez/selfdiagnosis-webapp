@@ -16,13 +16,8 @@ import org.springframework.validation.BindingResult;
 import java.util.List;
 
 @Controller
-
-@RequestMapping("/patient")
 public class PatientController {
     private PatientService patientService;
-
-
-
 
 
     @Autowired
@@ -32,85 +27,132 @@ public class PatientController {
 
     }
 
-//    @GetMapping("/")
-//    public String index() {
-//        return "index";
-//    }
-
-
-//<<<<<<< HEAD
-//    @GetMapping("/register")
-//    public String registrationForm(Model model) {
-//        model.addAttribute("patient", new Patient());
-//        return "PatientSignup";
-//    }
-
-    @GetMapping("/register")
-    public String registrationForm(Model model){
-        PatientDTO patient = new PatientDTO();
-        model.addAttribute("patient", patient);
-        return "PatientSignup";
+    @GetMapping("/")
+    public String home(){
+        return "index";
     }
-
-//    @PostMapping("/save")
-//    public String save(@ModelAttribute Patient patient){
-//        patientServiceImpl.newPatient(patient);
-//
-//        return "redirect:/home";
-//    }
-// handler method to handle user registration form submit request
-@PostMapping("/save")
-public String registration(@Valid @ModelAttribute("patient") PatientDTO patientDTO,
-                           BindingResult result, Model model){
-    Patient existingPatient = patientService.findByEmail(patientDTO.getEmail());
-//=======
-//    @GetMapping("/patient/register")
-//    public String registrationForm(Model model) {
-//        model.addAttribute("patient", new Patient());
-//        return "PatientSignup.html";
-//    }
-//
-//    @PostMapping("/patient/save")
-//    public String save(@ModelAttribute Patient patient){
-//        patientService.newPatient(patient);
-//>>>>>>> master
-
-    if(existingPatient != null && existingPatient.getEmail() != null && !existingPatient.getEmail().isEmpty()){
-        result.rejectValue("email", null,
-                "There is already an account registered with the same email");
-    }
-
-//<<<<<<< HEAD
-    if(result.hasErrors()){
-        model.addAttribute("patient", patientDTO);
-        return "PatientSignup";
-    }
-
-    model.addAttribute("patient", patientDTO);
-    patientService.newPatient(patientDTO);
-    return "redirect:/login";
-}
-
 
     @GetMapping("/login")
-//=======
-//    @GetMapping("/patient/login")
-//>>>>>>> master
     public String login(){
         return "login";
     }
-    @GetMapping("/home")
-    public String landingPage(Model model){
+
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model){
+        // create model object to store form data
         PatientDTO patient = new PatientDTO();
         model.addAttribute("patient", patient);
-        return "patientLandingPage.html";
+        return "PatientSignup";
     }
 
-    @GetMapping("/list")
-    public String allPatients(Model model){
+    @PostMapping("/register/save")
+    public String registration(@Valid @ModelAttribute("user") @RequestBody PatientDTO patientDTO,
+                               BindingResult result,
+                               Model model){
+        Patient existingUser = patientService.findPatientByEmail(patientDTO.getEmail());
+
+        if(existingUser != null && existingUser.getEmail() != null && !existingUser.getEmail().isEmpty()){
+            result.rejectValue("email", null,
+                    "There is already an account registered with the same email");
+        }
+
+        if(result.hasErrors()){
+            model.addAttribute("patient", patientDTO);
+            return "/register";
+        }
+
+        patientService.save(patientDTO);
+        return "redirect:/register?success";
+    }
+
+    @GetMapping("/patients")
+    public String users(Model model){
         List<PatientDTO> patients = patientService.findAllUsers();
         model.addAttribute("patients", patients);
         return "users-list";
-
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//@GetMapping("/index")
+//    public String home(){
+//        return "index";
+//    }
+//    @GetMapping("/login")
+//    public String login(){
+//        return "login";
+//    }
+//
+//
+//    @GetMapping("/register")
+//    public String registrationForm(Model model){
+//        PatientDTO patientDTO = new PatientDTO();
+//        model.addAttribute("patient", patientDTO);
+//        return "PatientSignup";
+//    }
+//
+//@PostMapping("/save")
+//public String registration(@Valid @ModelAttribute("patient") PatientDTO patientDTO,
+//                           BindingResult result, Model model){
+//    Patient existingPatient = patientService.findByEmail(patientDTO.getEmail());
+//
+//    if(existingPatient != null && existingPatient.getEmail() != null && !existingPatient.getEmail().isEmpty()){
+//        result.rejectValue("email", null,
+//                "There is already an account registered with the same email");
+//    }
+//
+//
+//    if(result.hasErrors()){
+//        model.addAttribute("patient", patientDTO);
+//        return "PatientSignup";
+//    }
+//
+//    model.addAttribute("patient", patientDTO);
+//    patientService.save(patientDTO);
+//    return "redirect:/register?success";
+//}
+//
+//
+//
+//    @GetMapping("/home")
+//    public String landingPage(Model model){
+//
+//        return "patientLandingPage";
+//    }
+//
+//    @GetMapping("/list")
+//    public String allPatients(Model model){
+//        List<PatientDTO> patients = patientService.findAllUsers();
+//        model.addAttribute("patients", patients);
+//        return "users-list";
+//
+//    }

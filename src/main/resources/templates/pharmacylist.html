@@ -28,25 +28,23 @@
 </nav>
 <div class="container">
   <div class="row col-md-10">
-    <h2>List of Registered Patients</h2>
+    <h2>List of Registered Pharmacy</h2>
   </div>
   <table class="table table-bordered table-hover">
     <thead class="table-dark">
     <tr>
       <th>Name</th>
-      <th>Gender</th>
-      <th>DOB</th>
-      <th>Address</th>
+      <th>ADDRESS</th>
       <th>Email</th>
+      <th>Phone</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each = "patient : ${patients}">
-      <td th:text = "${patient.name}"></td>
-      <td th:text = "${patient.gender}"></td>
-      <td th:text = "${patient.dob}"></td>
-      <td th:text = "${patient.address}"></td>
-      <td th:text = "${patient.email}"></td>
+    <tr th:each = "pharmacy : ${pharmacys}">
+      <td th:text = "${pharmacy.name}"></td>
+      <td th:text = "${pharmacy.address}"></td>
+      <td th:text = "${pharmacy.email}"></td>
+      <td th:text = "${pharmacy.telephone}"></td>
     </tr>
     </tbody>
   </table>

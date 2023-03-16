@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="role")
+@Table(name="roles")
 public class Role {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -19,16 +19,19 @@ public class Role {
     @Column(unique = true, nullable = false)
     private String name;
 
-    public Role(String name) {
-        super();
-        this.name = name;
-    }
 
+    public Role(String name){
+        this.name=name;
+    }
 
     @ManyToMany(mappedBy="roles")
     private List<Patient> patients;
     @ManyToMany(mappedBy="roles")
     private List<Doctor> doctors;
+
     @ManyToMany(mappedBy="roles")
     private List<Pharmacy> pharmacy;
+
 }
+
+

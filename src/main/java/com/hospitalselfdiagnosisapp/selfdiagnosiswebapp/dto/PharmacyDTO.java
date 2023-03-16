@@ -21,7 +21,7 @@ public class PharmacyDTO {
     @NotEmpty(message = "Email should not be empty")
     @Email
     private String email;
-    @NotEmpty(message = "Phone number should not be empty")
+
     private int telephone;
 
     @NotEmpty(message = "Password should not be empty")

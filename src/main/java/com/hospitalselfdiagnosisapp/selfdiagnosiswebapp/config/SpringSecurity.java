@@ -1,14 +1,11 @@
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.config;
 
-
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,7 +15,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SpringSecurity {
-
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -26,28 +22,26 @@ public class SpringSecurity {
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/patient/register").permitAll()
-                                .requestMatchers("/patient/login").permitAll()
-                                .requestMatchers("/patient/**").hasRole("PATIENT")
-                                .requestMatchers("/doctor/**").hasRole("DOCTOR")
-                                .requestMatchers("/pharmacy/**").hasRole("PHARMACY")
-                                .requestMatchers("/save").permitAll()
-                                .requestMatchers("/login").permitAll()
-                                .requestMatchers("/home").permitAll()
-                                .requestMatchers("/patient/list").hasRole("ADMIN")
+                        authorize.requestMatchers("/register/**").permitAll()
+                                .requestMatchers("/").permitAll()
+                                .requestMatchers("/resources/**").permitAll()
+                                .requestMatchers("/static/**").permitAll()
+                                .requestMatchers("/patients").permitAll()
+                                .requestMatchers("/doctor/**").permitAll()
+                                .requestMatchers("/pharmacy/**").permitAll()
+//                                .hasRole("PATIENT")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/home")
+                                .defaultSuccessUrl("/patients")
                                 .permitAll()
-//        http.httpBasic();
-//        http.authorizeRequests()
-//                .anyRequest().permitAll();
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
@@ -62,4 +56,6 @@ public class SpringSecurity {
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
+
+
 }

@@ -21,78 +21,126 @@
         <script src="https://kit.fontawesome.com/3dbe25ee14.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <div class="login-container">
-                <div class="my-2 text-center text-secondary">
-                    <h4>St. Mary's Hospital Clinic</h4>
-                    <h4>Patient SignUp</h4>
-                </div>
-                <form  th:action="@{/patient/save}" method="post" th:object="${patient}">
-                    <div class="my-2">
-                        <label for="name" class="form-label">Full Name :</label>
-                    </div>
-                    <div class="my-2">
-                        <input class="form-control"  th:field="*{name}"  type="text" id="name" placeholder="Enter name" >
-                        <p th:errors = "*{name}" class="text-danger"
-                           th:if="${#fields.hasErrors('name')}"></p>
-                    </div>
-                    <div>
-                        <label class="form-label">Gender :</label>
-                    </div>
-                    <div class="my-2 px-2">
-                        <label for="male"><input type="radio" name="gender" id="male" value="male" th:field="*{gender}">Male</label>
-                        <label for="female"><input type="radio" name="gender" id="female" value="female" th:field="*{gender}">Female</label>
-                        <label for="Binary"><input type="radio" name="gender" id="binary" value="binary" th:field="*{gender}">Binary</label>
-                        <p th:errors = "*{gender}" class="text-danger"
-                           th:if="${#fields.hasErrors('gender')}"></p>
-                    </div>
-                    <div class="my-2">
-                        <label for="email" class="form-label">Email :</label>
-                    </div>
-                    <div class="my-2">
-                        <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="johndoe@example.com" >
-                        <p th:errors = "*{email}" class="text-danger"
-                           th:if="${#fields.hasErrors('email')}"></p>
-                    </div>
-                    <div class="my-2">
-                        <label for="dob" class="form-label">Date of Birth :</label>
-                    </div>
-                    <div class="my-2">
-                        <input type="date"  class="form-control"  id="dob" th:field="*{dob}" >
-                        <p th:errors = "*{dob}" class="text-danger"
-                           th:if="${#fields.hasErrors('dob')}"></p>
-                    </div>
-                    <div class="my-2">
-                        <label for="address" class="form-label" >Address :</label>
-                    </div>
-                    <div class="my-2">
-                        <input type="text" class="form-control" id="address" th:field="*{address}"placeholder="e.g Nakuru" >
-                        <p th:errors = "*{address}" class="text-danger"
-                           th:if="${#fields.hasErrors('address')}"></p>
-                    </div>
-                    <div class="my-2">
-                        <label for="pwd" class="form-label" >Password :</label>
-                    </div>
-                    <div class="my-2">
-                        <input type="password" class="form-control" id="pwd" th:field="*{password}" placeholder="enter password" >
-                        <p th:errors = "*{password}" class="text-danger"
-                           th:if="${#fields.hasErrors('password')}"></p>
-                    </div>
-                    <div class="my-2">
-                        <label for="repwd" class="form-label" >Confirm Password :</label>
-
-                    </div>
-                    <div class="my-2">
-                        <input type="password" class="form-control" id="repwd" placeholder="re-enter password" >
-                    </div>
-                    <div class="signup-btn">
-                        <button type="submit" class="btn btn-primary my-3">Register</button>
-                    </div>
-                </form>
-                <p>Already have an account?<a href="" th:href="@{/patient/login}" >login here</a></p>
-                
-                
+            <a class="navbar-brand" th:href="@{/}">ST. MARY'S ONLINE CLINIC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
+    <br /><br /><br />
+    <div class="container">
+        <div class="row col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Registration</h2>
+                </div>
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">
+                        You have successfully registered our app!
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form
+                            method="post"
+                            role="form"
+                            th:action="@{/register/save}"
+                            th:object="${patient}"
+                    >
+                        <div class="form-group mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input
+                                    class="form-control"
+                                    id="name"
+                                    name="name"
+                                    placeholder="e.g Peter Mwaniki"
+                                    th:field="*{name}"
+                                    type="text"
+                            />
+                            <p th:errors = "*{name}" class="text-danger"
+                               th:if="${#fields.hasErrors('name')}"></p>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">Gender</label><br>
+                            <label for="male"><input type="radio" name="gender" id="male" value="male" th:field="*{gender}" checked>Male</label>
+                            <label for="female"><input type="radio" name="gender" id="female" value="female" th:field="*{gender}">Female</label>
+                            <label for="Binary"><input type="radio" name="gender" id="binary" value="binary" th:field="*{gender}">Binary</label>
+
+                            <p th:errors = "*{gender}" class="text-danger"
+                               th:if="${#fields.hasErrors('gender')}"></p>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">Date of Birth</label>
+                            <input
+                                    class="form-control"
+                                    id="dob"
+                                    name="dob"
+                                    placeholder="Select date of birth"
+                                    th:field="*{dob}"
+                                    type="date"
+                            />
+                            <p th:errors = "*{dob}" class="text-danger"
+                               th:if="${#fields.hasErrors('dob')}"></p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Address</label>
+                            <input
+                                    class="form-control"
+                                    id="address"
+                                    name="address"
+                                    placeholder="e.g NAKURU"
+                                    th:field="*{address}"
+                                    type="text"
+                            />
+                            <p th:errors = "*{address}" class="text-danger"
+                               th:if="${#fields.hasErrors('address')}"></p>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">Email</label>
+                            <input
+                                    class="form-control"
+                                    id="email"
+                                    name="email"
+                                    placeholder="E.g peter@example.com"
+                                    th:field="*{email}"
+                                    type="email"
+                            />
+                            <p th:errors = "*{email}" class="text-danger"
+                               th:if="${#fields.hasErrors('email')}"></p>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label">Password</label>
+                            <input
+                                    class="form-control"
+                                    id="password"
+                                    name="password"
+                                    placeholder="Enter password"
+                                    th:field="*{password}"
+                                    type="password"
+                            />
+                            <p th:errors = "*{password}" class="text-danger"
+                               th:if="${#fields.hasErrors('password')}"></p>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit">Register</button>
+                            <span>Already registered? <a th:href="@{/login}">Login here</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
 </html>

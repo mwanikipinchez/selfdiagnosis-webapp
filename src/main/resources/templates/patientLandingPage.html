@@ -94,9 +94,7 @@
                        
     
                     </div>
-                        <h4 class="text-center">Welcome
-                            <span  th:text="${patient.name}" ></span>
-                        </h4>
+                    <div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="name"></span></div>
 
 
 

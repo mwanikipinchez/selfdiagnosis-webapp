@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -30,93 +31,88 @@ public class PatientServiceImpl implements PatientService{
     }
 
 
-//    OTHER CRUD OPERATIONS METHOD GOES HERE
-//    get patients
-//    public List allPatient(){
-//        return patientRepository.findAll();
-//    }
-public List<PatientDTO> findAllUsers() {
-    List<Patient> patients = patientRepository.findAll();
-    return patients.stream()
-            .map((patient) -> mapToPatientDTO(patient))
-            .collect(Collectors.toList());
-}
-    private PatientDTO mapToPatientDTO(Patient patient){
-        PatientDTO patientDTO = new PatientDTO();
-
-        patientDTO.setName(patient.getName());
-        patientDTO.setEmail(patient.getEmail());
-        return patientDTO;
-    }
-
-//    get one patient
-    public Optional<Patient> patient(Long id){
-
-        return patientRepository.findById(id);
-
-    }
 
 
-
-
-//    Create a new patient
-//    public void newPatient(Patient patient){
-//        patientRepository.save(patient);
-//    }
 
     @Override
-    public Patient findByEmail(String email) {
-        return patientRepository.findByEmail(email);
-    }
-
-    //    update existing patient
-    public void updatePatient(Long id, Patient patient){
-
-        Optional<Patient> existingPatient = patientRepository.findById(id);
-
-        if(existingPatient.isPresent()){
-            Patient updatePatient=existingPatient.get();
-            updatePatient.setId(id);
-            updatePatient.setAddress(patient.getAddress());
-            updatePatient.setName(patient.getName());
-            updatePatient.setDob(patient.getDob());
-            updatePatient.setEmail(patient.getEmail());
-            updatePatient.setGender(patient.getGender());
-            updatePatient.setPassword(patient.getPassword());
-
-        }
-    }
-
-    @Override
-    public void newPatient(PatientDTO patientDTO) {
+    public void save(PatientDTO patientDTO) {
         Patient patient = new Patient();
         patient.setName(patientDTO.getName());
         patient.setGender(patientDTO.getGender());
+        patient.setDob(patientDTO.getDob());
         patient.setAddress(patientDTO.getAddress());
         patient.setEmail(patientDTO.getEmail());
-        patient.setDob(patientDTO.getDob());
         patient.setPassword(passwordEncoder.encode(patientDTO.getPassword()));
-        Role role = roleRepository.findByName("PATIENT");
+        patient.setDateRegistered(LocalDateTime.now());
+        Role role = roleRepository.findByName("ROLE_PATIENT");
         if(role == null){
             role = checkRoleExist();
         }
         patient.setRoles(Arrays.asList(role));
         patientRepository.save(patient);
-    }
 
+    }
     private Role checkRoleExist(){
         Role role = new Role();
-        role.setName("PATIENT");
+        role.setName("ROLE_PATIENT");
         return roleRepository.save(role);
     }
 
+    @Override
+    public Patient findPatientByEmail(String email) {
+        return patientRepository.findByEmail(email);
+    }
 
-    //    deleting a patient from the db
-    public void deletePatient(Long id)
-    {
-        patientRepository.deleteById(id);
+    @Override
+    public List<PatientDTO> findAllUsers() {
+        List<Patient> patients = patientRepository.findAll();
+        return patients.stream()
+                .map((patient) -> mapToPatientDTO(patient))
+                .collect(Collectors.toList());
+    }
+
+
+    private PatientDTO mapToPatientDTO(Patient patient){
+        PatientDTO patientDTO = new PatientDTO();
+
+        patientDTO.setName(patient.getName());
+        patientDTO.setGender(patient.getGender());
+        patientDTO.setDob(patient.getDob());
+        patientDTO.setAddress(patient.getAddress());
+        patientDTO.setEmail(patient.getEmail());
+        return patientDTO;
     }
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public void updatePatient(Long id, Patient patient){
+//
+//        Optional<Patient> existingPatient = patientRepository.findById(id);
+//
+//        if(existingPatient.isPresent()){
+//            Patient updatePatient=existingPatient.get();
+//            updatePatient.setId(id);
+//            updatePatient.setAddress(patient.getAddress());
+//            updatePatient.setName(patient.getName());
+//            updatePatient.setDob(patient.getDob());
+//            updatePatient.setEmail(patient.getEmail());
+//            updatePatient.setGender(patient.getGender());
+//            updatePatient.setPassword(patient.getPassword());
+//
+//        }
+//    }

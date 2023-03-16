@@ -18,7 +18,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private PatientRepository patientRepository;
 
-    @Autowired
+
     public CustomUserDetailsService(PatientRepository patientRepository)
     {
         this.patientRepository=patientRepository;

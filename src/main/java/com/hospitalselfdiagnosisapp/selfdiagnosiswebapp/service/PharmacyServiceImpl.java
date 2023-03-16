@@ -4,41 +4,55 @@ import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.PharmacyDTO;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Pharmacy;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Role;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.repository.PharmacyRepository;
+import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
 @Service
 public class PharmacyServiceImpl implements PharmacyService{
     private PharmacyRepository pharmacyRepository;
+    private PasswordEncoder passwordEncoder;
+    private RoleRepository roleRepository;
+
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-    @Autowired
-    public PharmacyServiceImpl(PharmacyRepository pharmacyRepository){
+    public PharmacyServiceImpl(PharmacyRepository pharmacyRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository){
         this.pharmacyRepository=pharmacyRepository;
+        this.roleRepository=roleRepository;
+        this.passwordEncoder=passwordEncoder;
     }
 
     @Override
     public Pharmacy save(PharmacyDTO pharmacyDTO) {
-        Pharmacy pharmacy = new Pharmacy(pharmacyDTO.getName(),pharmacyDTO.getAddress(),
-                pharmacyDTO.getEmail(),pharmacyDTO.getTelephone(),
-                passwordEncoder.encode(pharmacyDTO.getPassword()),
-                LocalDateTime.now(), Arrays.asList(new Role("Pharmacy")));
-        return pharmacyRepository.save(pharmacy);
+        Pharmacy pharmacy = new Pharmacy();
+        pharmacy.setName(pharmacyDTO.getName());
+        pharmacy.setAddress(pharmacyDTO.getAddress());
+        pharmacy.setEmail(pharmacyDTO.getEmail());
+        pharmacy.setTelephone(pharmacyDTO.getTelephone());
+        pharmacy.setPassword(passwordEncoder.encode(pharmacyDTO.getPassword()));
+        pharmacy.setDateRegistered(LocalDateTime.now());
+        Role role = roleRepository.findByName("ROLE_PHARMACY");
+        if(role == null){
+            role = checkRoleExist();
+        }
+        pharmacy.setRoles(Arrays.asList(role));
+        return  pharmacyRepository.save(pharmacy);
 
+    }
+    private Role checkRoleExist(){
+        Role role = new Role();
+        role.setName("ROLE_PHARMACY");
+        return roleRepository.save(role);
     }
 
     @Override
@@ -47,15 +61,10 @@ public class PharmacyServiceImpl implements PharmacyService{
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        Pharmacy pharmacy = pharmacyRepository.findByEmail(username);
-        if (pharmacy == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
-        return new org.springframework.security.core.userdetails.User(pharmacy.getEmail(),
-                pharmacy.getPassword(), mapRolesToAuthorities(pharmacy.getRoles()));
+    public List<Pharmacy> findAllPharmacy() {
+        return pharmacyRepository.findAll();
     }
+
 
     private Collection < ? extends GrantedAuthority > mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());

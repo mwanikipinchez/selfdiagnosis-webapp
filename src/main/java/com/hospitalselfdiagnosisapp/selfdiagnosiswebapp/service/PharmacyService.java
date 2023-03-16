@@ -4,8 +4,12 @@ import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.PharmacyDTO;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Pharmacy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface PharmacyService extends UserDetailsService {
+import java.util.List;
+
+public interface PharmacyService{
     Pharmacy save(PharmacyDTO pharmacyDTO);
     Pharmacy findByEmail(String email);
+    List<Pharmacy> findAllPharmacy();
 
 }
+//

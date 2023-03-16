@@ -50,22 +50,4 @@ public class Doctor {
 
     private List<Role> roles = new ArrayList<>();
 
-    public Doctor(String name, String gender, int idNo, int telephone,
-                  LocalDate dob, String doctorNumber, String address,
-                  String email, String password, LocalDateTime dateRegistered, Collection<Role> roles){
-
-        this.name = name;
-        this.gender = gender;
-        this.idNo = idNo;
-        this.telephone=telephone;
-        this.dob = dob;
-        this.doctorNumber=doctorNumber;
-        this.address=address;
-        this.email=email;
-        this.password=password;
-        this.dateRegistered=dateRegistered;
-        this.roles= (List<Role>) roles;
-    }
-
-
 }

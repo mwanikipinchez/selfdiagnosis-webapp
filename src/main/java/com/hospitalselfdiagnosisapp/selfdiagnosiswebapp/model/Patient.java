@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name="patient_records")
 @Entity
 public class Patient {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -30,10 +31,11 @@ public class Patient {
 
     @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    private LocalDateTime dateRegistered = LocalDateTime.now();
     @Column(nullable = false)
     private String password;
-    private LocalDateTime dateRegistered = LocalDateTime.now();
-
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
@@ -42,9 +44,13 @@ public class Patient {
             joinColumns={@JoinColumn(name="PATIENT_ID", referencedColumnName="ID")},
             inverseJoinColumns = {@JoinColumn(name="ROLE_ID", referencedColumnName="ID")}
     )
+
+
     private List<Role> roles = new ArrayList<>();
 
+    }
 
 
 
-}
+
+

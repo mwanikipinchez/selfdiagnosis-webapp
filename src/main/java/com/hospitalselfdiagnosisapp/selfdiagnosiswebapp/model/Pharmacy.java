@@ -47,16 +47,16 @@ public class Pharmacy {
 
 
 
-    public Pharmacy(String name, String address, String email, int telephone,
-                    String password, LocalDateTime dateRegistered, Collection<Role> roles){
-        this.name=name;
-        this.address=address;
-        this.email=email;
-        this.telephone = telephone;
-        this.password = password;
-        this.dateRegistered=dateRegistered;
-        this.roles = (List<Role>) roles;
-
-    }
+//    public Pharmacy(String name, String address, String email, int telephone,
+//                    String password, LocalDateTime dateRegistered, Collection<Role> roles){
+//        this.name=name;
+//        this.address=address;
+//        this.email=email;
+//        this.telephone = telephone;
+//        this.password = password;
+//        this.dateRegistered=dateRegistered;
+//        this.roles = (List<Role>) roles;
+//
+//    }
 
 }

@@ -5,8 +5,12 @@ import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Doctor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
+
 @Primary
-public interface DoctorService extends UserDetailsService {
-    Doctor save(DoctorDTO registrationDTO);
+public interface DoctorService {
+    Doctor saveDoctor(DoctorDTO doctor);
     Doctor findByEmail(String email);
+
+    List<Doctor> findAllDoctors();
 }
