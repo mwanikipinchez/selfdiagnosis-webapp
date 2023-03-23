@@ -34,6 +34,7 @@ public class PatientController {
 
     @GetMapping("/login")
     public String login(){
+
         return "login";
     }
 
@@ -43,11 +44,11 @@ public class PatientController {
         // create model object to store form data
         PatientDTO patient = new PatientDTO();
         model.addAttribute("patient", patient);
-        return "PatientSignup";
+        return "PatientSignup.html";
     }
 
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute("user") @RequestBody PatientDTO patientDTO,
+    public String registration( @ModelAttribute("patient") @Valid PatientDTO patientDTO,
                                BindingResult result,
                                Model model){
         Patient existingUser = patientService.findPatientByEmail(patientDTO.getEmail());
@@ -70,7 +71,18 @@ public class PatientController {
     public String users(Model model){
         List<PatientDTO> patients = patientService.findAllUsers();
         model.addAttribute("patients", patients);
-        return "users-list";
+        return "users-list.html";
+    }
+
+    @GetMapping("/home")
+    public String patientLandingPage(){
+
+        return "patientLandingPage.html";
+    }
+
+    @GetMapping("/accessDenied")
+    public String accessDenied(){
+        return "403";
     }
 
 

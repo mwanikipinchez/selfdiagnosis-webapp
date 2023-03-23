@@ -6,6 +6,8 @@ import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Role;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.repository.PatientRepository;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +18,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Primary
 public class PatientServiceImpl implements PatientService{
     private PatientRepository patientRepository;
     private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
+
 
     @Autowired
     public PatientServiceImpl(PatientRepository patientRepository,
                               RoleRepository roleRepository,
-                              PasswordEncoder passwordEncoder){
+                              BCryptPasswordEncoder passwordEncoder){
         this.patientRepository=patientRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder=passwordEncoder;

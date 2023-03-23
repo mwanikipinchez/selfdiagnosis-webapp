@@ -33,6 +33,7 @@ public class PatientDTO {
     private String email;
 
     @NotEmpty(message= "Password should not be empty")
+//    @Size(min=8, max=20)
     private String password;
 
 }

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
 >
 <head>
   <meta charset="UTF-8">
@@ -30,6 +32,7 @@
   <div class="row col-md-10">
     <h2>List of Registered Patients</h2>
   </div>
+  <p>Welcome Administrator(<span sec:authentication="principal.username">User</span>)</p>
   <table class="table table-bordered table-hover">
     <thead class="table-dark">
     <tr>

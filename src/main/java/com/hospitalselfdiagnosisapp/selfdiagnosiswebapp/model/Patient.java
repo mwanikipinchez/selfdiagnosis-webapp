@@ -1,6 +1,7 @@
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -16,24 +17,31 @@ import java.util.List;
 @Table(name="patient_records")
 @Entity
 public class Patient {
-    private static final long serialVersionUID = 1L;
+//    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "This field is mandatory")
     @Column(nullable = false)
     private String name;
+    @NotBlank(message = "This field is mandatory")
     @Column(nullable = false)
     private String gender;
+
     @Column(nullable = false)
     private LocalDate dob;
+    @NotBlank(message = "This field is mandatory")
     @Column(nullable = false)
     private String address;
+    @NotBlank(message = "This field is mandatory")
 
     @Column(unique = true, nullable = false)
     private String email;
 
+
     @Column(nullable = false)
     private LocalDateTime dateRegistered = LocalDateTime.now();
+    @NotBlank(message = "This field is mandatory")
     @Column(nullable = false)
     private String password;
 

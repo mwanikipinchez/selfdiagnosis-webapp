@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+
 >
     <head>
         <title>St. Mary clinic   </title>
@@ -15,11 +17,13 @@
         <script src="https://kit.fontawesome.com/3dbe25ee14.js" crossorigin="anonymous"></script>
         <!--  -->
     </head>
-    <body th:object="${patient}">
+    <body>
     <div class="container-fluid" >
         <nav class="navbar navbar-expand-sm bg-light">
 
             <div class="container-fluid">
+                <div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="name"></span></div>
+                <p>Welcome <span sec:authentication="principal.username">User</span></p>
                 <div class="">
                     <a href="#" class="navbar-brand"> LOGO </a>
                 </div>
@@ -27,7 +31,7 @@
                     <li class="nav-item"><input type="text" placeholder="search" name="search"></li>
                     <li> <a class="nav-link" href="#"> Help </a></li>
                     <li> <a class="nav-link" href="#"> Donate </a></li>
-                    <li><a class="nav-link" th:href="@{/patient/logout}" >Logout</a></li>
+                    <li><a class="nav-link" th:href="@{/logout}" >Logout</a></li>
                 </ul>
             </div>
 
@@ -35,7 +39,7 @@
         </nav>
 
 
-         <div class="container-fluid" th:object="${patient}">
+         <div class="container-fluid">
             <div class="row mt-0">
 
         
@@ -83,7 +87,7 @@
                                 <i class="fa-solid fa-user"></i>
                             </button>
                             <ul class="dropdown-menu">
-                                <li th:object="${patient}"><span th:text="${patient.name}"> </span></li>
+                                <li sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="name"></span></li>
                               <li><a class="dropdown-item" href="#">Profile</a></li>
                               <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
                               
@@ -94,9 +98,17 @@
                        
     
                     </div>
-                    <div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="name"></span></div>
+                    <div ><span>WELCOME </span></div>
 
-
+                    <form action="uploadMyFile" th:action="@{/uploadMyFile}"
+                          method="post" enctype="multipart/form-data">
+                        <input type="file" name="myFile" />
+                        <input type="submit" />
+                    </form>
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <h3>You will see this only if you are ADMIN</h3>
+                        <p><a th:href="@{/patients}">Admin Home</a></p>
+                    </div>
 
                    
                 </div>

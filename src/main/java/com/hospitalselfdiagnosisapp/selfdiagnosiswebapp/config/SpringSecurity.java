@@ -1,5 +1,6 @@
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.config;
 
+import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.security.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,27 +27,32 @@ public class SpringSecurity {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/").permitAll()
-                                .requestMatchers("/resources/**").permitAll()
-                                .requestMatchers("/static/**").permitAll()
-                                .requestMatchers("/patients").permitAll()
-                                .requestMatchers("/doctor/**").permitAll()
-                                .requestMatchers("/pharmacy/**").permitAll()
-//                                .hasRole("PATIENT")
+        http
+                .csrf().disable()
+                .authorizeHttpRequests((requests) ->
+                        requests.requestMatchers("/", "/login","/register","/register/save","/CSS","/resources/**", "static/assets/**").permitAll()
+                                .requestMatchers("/home").hasAuthority("ROLE_PATIENT")
+                                .requestMatchers("/resources/","/assets","/static").permitAll()
+//                                .requestMatchers("/pharmacy/**").hasRole("ROLE_PHARMACY")
+                                .requestMatchers("/patients").hasAnyAuthority("ADMIN","ROLE_PATIENT")
+                                .anyRequest().authenticated()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/patients")
+                                .defaultSuccessUrl("/home")
+//                                .defaultSuccessUrl("/patients")
+                                .failureUrl("/login?error")
+
                                 .permitAll()
+
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/login?logout")
                                 .permitAll()
-                );
+                ).exceptionHandling()
+                .accessDeniedPage("/accessDenied");
         return http.build();
     }
 
