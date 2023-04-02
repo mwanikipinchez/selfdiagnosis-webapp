@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PharmacyService{
     Pharmacy save(PharmacyDTO pharmacyDTO);
-    Pharmacy findByEmail(String email);
+    Pharmacy findPharmacyByEmail(String email);
     List<Pharmacy> findAllPharmacy();
 
 }

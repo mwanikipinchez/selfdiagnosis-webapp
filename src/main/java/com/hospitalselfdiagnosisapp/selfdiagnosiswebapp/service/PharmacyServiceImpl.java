@@ -56,7 +56,7 @@ public class PharmacyServiceImpl implements PharmacyService{
     }
 
     @Override
-    public Pharmacy findByEmail(String email) {
+    public Pharmacy findPharmacyByEmail(String email) {
         return pharmacyRepository.findByEmail(email);
     }
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>selfDiagnosis</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/best-carousel-slide.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search-search-table.css">
+    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
+</head>
+
+<body><div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog" style="width: 502px;max-width: 502px;">
+        <div class="modal-content"> 
+            <div class="modal-header" style="background-color: #008ecc;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button> 
+                <h4 class="modal-title"><font color="white">Join Our Special Mailing List</font></h4>
+            </div><img src="https://dummyimage.com/500x250/" class="img-responsive" alt="Modal Image"> 
+            <div class="modal-body" style="text-align: center;background-color: #f4f4f4;">
+				<p>Comment this out if you don't need this line of text.</p>
+<input style="width: 200px;padding: 10px;cursor: pointer;box-shadow: 6px 6px 5px;-webkit-box-shadow: 6px 6px 5px #999;-moz-box-shadow: 6px 6px 5px #999;font-weight: bold;background: #eab52e;color: #000;border-radius: 10px;border: 1px solid #999;font-size: 150%;" type="button" value="Subscribe Now!" onclick="window.location.href='#'">
+            </div>
+        </div>
+    </div>
+</div>
+    <section class="py-4 py-xl-5">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                    <div class="card mb-5">
+                        <div class="card-body p-sm-5">
+                            <h2 class="text-center mb-4">New Appointment</h2>
+                            <form  th:action="@{/requestapointment}"  method="post" th:object="${appointment}">
+                                <div class="mb-3"><input class="form-control" type="hidden" id="patientEmail" name="patientEmail"  th:value="${#authentication.name}"></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="title" name="title" placeholder="Appointment title"></div>
+                                <div class="mb-3">
+                                    
+                                    <select id="doctorEmail" name="doctorEmail">
+                                        <option th:each="doctor : ${doctors}" name="doctorEmail" id="doctorEmail" th:field="*{doctorEmail}" th:value="${doctor.email}" th:text="${doctor.name}"></option>
+                                      </select>
+                                
+                                </div>
+
+                                <div class="mb-3"><input class="form-control" type="datetime-local" id="appointmentDate" name="appointmentDate" ></div>
+                               
+                                
+                                <div><button class="btn btn-primary d-block w-100" type="submit">Request Appointment</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bold-and-dark.js"></script>
+    <script src="assets/js/BS-34-Modal-Popup-Window-With-Image-ready.js"></script>
+    <script src="assets/js/Table-With-Search-search-table.js"></script>
+</body>
+
+</html>

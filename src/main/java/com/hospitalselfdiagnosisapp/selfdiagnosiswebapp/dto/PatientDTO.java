@@ -1,7 +1,7 @@
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto;
 
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Role;
-import jakarta.persistence.Entity;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -31,6 +31,9 @@ public class PatientDTO {
     @NotEmpty(message="Email should not be empty")
     @Email
     private String email;
+
+    @NotEmpty
+     private String phone;
 
     @NotEmpty(message= "Password should not be empty")
 //    @Size(min=8, max=20)

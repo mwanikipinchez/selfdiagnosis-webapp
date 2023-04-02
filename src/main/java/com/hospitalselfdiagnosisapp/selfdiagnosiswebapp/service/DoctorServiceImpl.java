@@ -69,7 +69,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 
     @Override
-    public Doctor findByEmail(String email) {
+    public Doctor findDoctorByEmail(String email) {
         return doctorRepository.findByEmail(email);
     }
 

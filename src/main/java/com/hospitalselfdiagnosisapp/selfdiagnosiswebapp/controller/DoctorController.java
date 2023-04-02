@@ -24,33 +24,33 @@ public class DoctorController {
     }
 
 
-    @GetMapping("/doctor/register")
-    public String showRegistrationForm(Model model){
-        DoctorDTO doctor = new DoctorDTO();
-        model.addAttribute("doctor", doctor);
-        return "doctorSignup";
+//    @GetMapping("/doctor/register")
+//    public String showRegistrationForm(Model model){
+//        DoctorDTO doctor = new DoctorDTO();
+//        model.addAttribute("doctor", doctor);
+//        return "Dsignup";
+//
+//    }
 
-    }
-
-    @PostMapping("/doctor/save")
-    public String registration(@Valid @ModelAttribute("doctor") @RequestBody DoctorDTO doctor,
-                               BindingResult result, Model model){
-        Doctor existingDoctor = doctorService.findByEmail(doctor.getEmail());
-
-        if(existingDoctor != null && existingDoctor.getEmail() != null && !existingDoctor.getEmail().isEmpty()){
-            result.rejectValue("email", null,
-                    "There is already an account registered with the same email");
-        }
-
-        if(result.hasErrors()){
-            model.addAttribute("doctor", doctor);
-            return "doctorSignup";
-        }
-
-        model.addAttribute("doctor", doctor);
-        doctorService.saveDoctor(doctor);
-        return "redirect:/doctor/doctors";
-    }
+//    @PostMapping("/doctor/save")
+//    public String registration(@Valid @ModelAttribute("doctor") @RequestBody DoctorDTO doctor,
+//                               BindingResult result, Model model){
+//        Doctor existingDoctor = doctorService.findByEmail(doctor.getEmail());
+//
+//        if(existingDoctor != null && existingDoctor.getEmail() != null && !existingDoctor.getEmail().isEmpty()){
+//            result.rejectValue("email", null,
+//                    "There is already an account registered with the same email");
+//        }
+//
+//        if(result.hasErrors()){
+//            model.addAttribute("doctor", doctor);
+//            return "doctorSignup";
+//        }
+//
+//        model.addAttribute("doctor", doctor);
+//        doctorService.saveDoctor(doctor);
+//        return "redirect:/doctor/doctors";
+//    }
 
 
     @GetMapping("/doctor/login")
@@ -63,12 +63,12 @@ public class DoctorController {
         return "doctorLandingPage";
     }
 
-    @GetMapping("/doctor/doctors")
-    public String doctors(Model model){
-        List<Doctor> doctors = doctorService.findAllDoctors();
-        model.addAttribute("doctors", doctors);
-        return "doctors";
-    }
+//    @GetMapping("/doctor/doctors")
+//    public String doctors(Model model){
+//        List<Doctor> doctors = doctorService.findAllDoctors();
+//        model.addAttribute("doctors", doctors);
+//        return "doctors";
+//    }
 
 
 

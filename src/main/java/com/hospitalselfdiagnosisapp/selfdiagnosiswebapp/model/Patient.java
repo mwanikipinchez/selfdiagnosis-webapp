@@ -37,6 +37,8 @@ public class Patient {
 
     @Column(unique = true, nullable = false)
     private String email;
+    @Column(nullable = false)
+    private String phone;
 
 
     @Column(nullable = false)

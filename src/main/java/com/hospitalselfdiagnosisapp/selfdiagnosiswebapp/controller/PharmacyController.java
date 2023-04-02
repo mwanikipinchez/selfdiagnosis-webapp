@@ -30,32 +30,32 @@ public class PharmacyController {
         this.pharmacyRepository = pharmacyRepository;
     }
 
-    @GetMapping("/pharmacy/register")
-    public String showRegistrationForm(Model model){
-        PharmacyDTO pharmacyDTO = new PharmacyDTO();
-        model.addAttribute("pharmacy", pharmacyDTO);
-        return "pharmacySignup";
-    }
+//    @GetMapping("/pharmacy/register")
+//    public String showRegistrationForm(Model model){
+//        PharmacyDTO pharmacyDTO = new PharmacyDTO();
+//        model.addAttribute("pharmacy", pharmacyDTO);
+//        return "pharmacySignup";
+//    }
 
-    @PostMapping("/pharmacy/save")
-    public String registration(@Valid @ModelAttribute("pharmacy") PharmacyDTO pharmacyDTO,
-                               BindingResult result, Model model){
-       Pharmacy existingPharmacy = pharmacyService.findByEmail(pharmacyDTO.getEmail());
-
-        if(existingPharmacy != null && existingPharmacy.getEmail() != null && !existingPharmacy.getEmail().isEmpty()){
-            result.rejectValue("email", null,
-                    "There is already an account registered with the same email");
-        }
-
-        if(result.hasErrors()){
-            model.addAttribute("pharmacy", pharmacyDTO);
-            return "pharmacySignup";
-        }
-
-        model.addAttribute("pharmacy", pharmacyDTO);
-        pharmacyService.save(pharmacyDTO);
-        return "redirect:/pharmacy";
-    }
+//    @PostMapping("/pharmacy/save")
+//    public String registration(@Valid @ModelAttribute("pharmacy") PharmacyDTO pharmacyDTO,
+//                               BindingResult result, Model model){
+//       Pharmacy existingPharmacy = pharmacyService.findByEmail(pharmacyDTO.getEmail());
+//
+//        if(existingPharmacy != null && existingPharmacy.getEmail() != null && !existingPharmacy.getEmail().isEmpty()){
+//            result.rejectValue("email", null,
+//                    "There is already an account registered with the same email");
+//        }
+//
+//        if(result.hasErrors()){
+//            model.addAttribute("pharmacy", pharmacyDTO);
+//            return "pharmacySignup";
+//        }
+//
+//        model.addAttribute("pharmacy", pharmacyDTO);
+//        pharmacyService.save(pharmacyDTO);
+//        return "redirect:/pharmacy";
+//    }
 
     @GetMapping("/pharmacy/login")
     public String login(){
@@ -67,10 +67,10 @@ public class PharmacyController {
         return "pharmacyLandingPage";
     }
 
-    @GetMapping("/pharmacy")
-    public String pharmacy(Model model){
-        List<Pharmacy> pharmacy = pharmacyService.findAllPharmacy();
-        model.addAttribute("pharmacys", pharmacy);
-        return "pharmacylist";
-    }
+//    @GetMapping("/pharmacy")
+//    public String pharmacy(Model model){
+//        List<Pharmacy> pharmacy = pharmacyService.findAllPharmacy();
+//        model.addAttribute("pharmacys", pharmacy);
+//        return "pharmacylist";
+//    }
 }

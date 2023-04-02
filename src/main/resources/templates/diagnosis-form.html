@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Self-Diagnosis</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Self-Diagnosis</h1>
+    <form action="/diagnose" method="post" th:object="${symptoms}">
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" name="age" id="age" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="sex">Sex</label>
+            <select name="sex" id="sex" class="form-control" required>
+                <option value="">-- Please select --</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="symptomsIds">Symptoms</label>
+<!--            <select name="symptoms" id="symptoms" class="form-control" multiple required>-->
+<!--                <option value="">&#45;&#45; Please select &#45;&#45;</option>-->
+<!--                <option th:each="symptom : ${symptoms}" th:value="${symptom.id}" th:text="${symptom.name}"></option>-->
+<!--            </select>-->
+            <input type="text" name="symptomsIds" id="symptomsIds" placeholder="e.g headache, chest pain, e.t.c">
+        </div>
+        <button type="submit" class="btn btn-primary">Diagnose</button>
+    </form>
+</div>
+
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j/CGJLlgzo0PtHQa6U9AZ5z5Z5JNwNlQJkV5q2QRQ/xlLv+fQOEW+0MwpXJmzWoN"
+        crossorigin="anonymous"></script>
+</body>
+</html>

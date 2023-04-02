@@ -10,7 +10,7 @@ import java.util.List;
 @Primary
 public interface DoctorService {
     Doctor saveDoctor(DoctorDTO doctor);
-    Doctor findByEmail(String email);
+    Doctor findDoctorByEmail(String email);
 
     List<Doctor> findAllDoctors();
 }

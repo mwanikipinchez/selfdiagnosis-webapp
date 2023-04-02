@@ -46,6 +46,7 @@ public class PatientServiceImpl implements PatientService{
         patient.setDob(patientDTO.getDob());
         patient.setAddress(patientDTO.getAddress());
         patient.setEmail(patientDTO.getEmail());
+        patient.setPhone(patientDTO.getPhone());
         patient.setPassword(passwordEncoder.encode(patientDTO.getPassword()));
         patient.setDateRegistered(LocalDateTime.now());
         Role role = roleRepository.findByName("ROLE_PATIENT");
