@@ -24,15 +24,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     <div class="sidebar-brand-text mx-3"><span>ST. MARY</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
-                <!-- <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link active" href="" th:href="@{/dashboard}"><svg></svg><span>DASHBOARD</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="" th:href="@{/profile}"><svg></svg><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="" th:href="@{/diagnosisform}"><svg></svg><span>Diagnosis</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="" th:href="@{/appointment}"><svg></svg><span>Appointments</span></a></li>
-                        
-                    <li class="nav-item"><a class="nav-link" href="" th:href="@{/nearpharmacy}"><svg></svg><span>Pharmacy</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="" th:href="@{/logout}"><svg></svg><span>Logout</span></a></li>
-              </ul> -->
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link active" href="" th:href="@{/dashboard}" ><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="" th:href="@{/profile}"><i class="fas fa-user"></i><span>Profile</span></a></li>
@@ -145,18 +136,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                    
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
                         <h3 class="text-dark mb-0">Patient Dashboard</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
-                        <!-- <div sec:authorize="isAuthenticated()">
-                            This content is only shown to authenticated users.
-                          </div> -->
-                          <!-- <div sec:authorize="hasRole('ADMIN')">
-                            This content is only shown to administrators.
-                          </div>
-                          <div sec:authorize="hasRole('ROLE_PATIENT')">
-                            This content is only shown to users.
-                          </div>    
-                          Logged user: <span sec:authentication="name">Bob</span>
-Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>                -->
-                        
+                      
                     </div>
                     <div class="row">
                         <div class="col-lg-6 mb-4">
@@ -219,16 +199,12 @@ Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]<
                                                 <td>
                                                     <div class="col-auto">
                                                         <a class="btn btn-success btn-sm d-none d-sm-inline-block" role="button" href="#" th:href="@{/todoform}">Update</a>
-                                                        <a class="btn btn-danger btn-sm d-none d-sm-inline-block" role="button" href="#" th:href="@{/todoform}">Delete</a>
+                                                        <a class="btn btn-danger btn-sm d-none d-sm-inline-block" role="button" href="#" >Delete</a>
                                                     </div>
                                                 </td>
                                                 </tr>
                                                 
-                                                
-                                                
-                                                <!-- <td><button class="btn btn-success" style="margin-left: 5px;" type="submit"><i class="fa fa-check" style="font-size: 15px;"></i></button><button class="btn btn-danger" style="margin-left: 5px;" type="submit"><i class="fa fa-trash" style="font-size: 15px;"></i></button></td>
-                                                                              
-                                            -->
+                                               
                                             
                                         </tbody>
                                         

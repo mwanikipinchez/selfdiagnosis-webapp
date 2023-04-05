@@ -10,6 +10,7 @@ public interface PharmacyService{
     Pharmacy save(PharmacyDTO pharmacyDTO);
     Pharmacy findPharmacyByEmail(String email);
     List<Pharmacy> findAllPharmacy();
+    List<Pharmacy> nearPharmacy(String address);
 
 }
 //

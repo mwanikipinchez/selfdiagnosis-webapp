@@ -39,8 +39,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                             <h2 class="text-center mb-4">New ToDo</h2>
                             <form  th:action="@{/addtodo}"  method="post" th:object="${todo}">
                                 <div class="mb-3"><input class="form-control" type="hidden" id="user" name="user"  th:value="${#authentication.name}"></div>
-                                <div class="mb-3"><input class="form-control" type="text" id="activity" name="activity" placeholder="Activity Name"></div>
-                                <div class="mb-3"><input class="form-control" type="time" id="time" name="time" placeholder="time"></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="activity" name="activity" placeholder="Activity Name" required></div>
+                                <div class="mb-3"><input class="form-control" type="time" id="time" name="time" placeholder="time" required></div>
                                 <!-- <div class="mb-3"><input class="form-control" type="text" id="status" name="status" placeholder="Status"></div> -->
                                 
                                 <div><button class="btn btn-primary d-block w-100" type="submit">Add</button></div>

@@ -48,16 +48,15 @@ public class SpringSecurity {
                 .authorizeHttpRequests((requests) ->
                                 requests.requestMatchers("/", "/login", "/register", "/register/save", "/css/**", "/resources/**", "static/**", "/assets/**", "/diagnosis").permitAll()
                                         .requestMatchers("/home").hasAnyAuthority("ROLE_PATIENT", "ADMIN")
-                                        .requestMatchers("/resources/", "/assets", "/static", "getSymptoms", "/doctor/register").permitAll()
-                                        //.requestMatchers("/pharmacy/**").hasRole("admin")
-                                        .requestMatchers("/patients").hasAuthority("ADMIN")
-                                        .requestMatchers("/pharmacy").hasAuthority("ADMIN")
+                                        .requestMatchers("/resources/", "/infermedicaData","/assets", "/static", "getSymptoms", "/doctorindex","/pharmacyindex","/pregister").permitAll()
+
+
                                         .requestMatchers("/ddashboard").hasAnyAuthority("ROLE_DOCTOR", "ADMIN")
                                         .requestMatchers("/dashboard").hasAnyAuthority("ROLE_PATIENT", "ADMIN")
                                         .requestMatchers("/pdashboard").hasAnyAuthority("ROLE_PHARMACY", "ADMIN")
                                         .requestMatchers("/admindashboard").hasAuthority("ADMIN")
-                                .anyRequest().authenticated()
-                                      //  .anyRequest().permitAll()
+//                                .anyRequest().authenticated()
+                                        .anyRequest().permitAll()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")

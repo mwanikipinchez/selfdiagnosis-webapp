@@ -65,6 +65,11 @@ public class PharmacyServiceImpl implements PharmacyService{
         return pharmacyRepository.findAll();
     }
 
+    @Override
+    public List<Pharmacy> nearPharmacy(String address) {
+        return pharmacyRepository.findByAddress(address);
+    }
+
 
     private Collection < ? extends GrantedAuthority > mapRolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());

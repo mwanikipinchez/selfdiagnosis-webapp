@@ -40,4 +40,9 @@ public class AppointmentServiceImpl implements AppointmentService{
 
         return appointmentRepository.findByPatientEmail(email);
     }
+
+    @Override
+    public List<Appointment> findByDoctorEmail(String email) {
+        return appointmentRepository.findByDoctorEmail(email);
+    }
 }

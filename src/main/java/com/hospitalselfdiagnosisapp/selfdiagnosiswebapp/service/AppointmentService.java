@@ -12,6 +12,7 @@ Appointment searchAppointment(String title);
  void delete(String title);
 
  List<Appointment> findByPatientEmail(String email);
+ List<Appointment> findByDoctorEmail(String email);
 
 
 

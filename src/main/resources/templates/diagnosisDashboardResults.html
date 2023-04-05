@@ -138,39 +138,54 @@ xmlns:th="http://www.thymeleaf.org"
                     <div class="container py-5">
                         <div class="row mb-5">
                             <div class="col-md-8 col-xl-6 text-center mx-auto">
-                                <p class="fw-bold text-success mb-2">Diagnosis</p>
-                                <h2 class="fw-bold">Enter your diagnosis here</h2>
+                                <p class="fw-bold text-success mb-2">Results</p>
+                                <h2 class="fw-bold">Diagnosis Results</h2>
                             </div>
                         </div>
                         
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-                                    <div class="card mb-5">
-                                        <div class="card-body p-sm-5">
-                                            
-                                            <form  th:action="@{/dashboardDiagnosis}"  method="post" >
-                                               
-                                                <div class="mb-3"><input class="form-control" type="number" id="age" name="age" placeholder="Your age" required></div>
-                                                <div class="mb-3">
-                                                    <label class="form-check-label">Gender</label>
-                                                        <div class="form-check" style="padding-right: 224px;margin-right: 12px;"><input class="form-check-input" type="radio" name="gender"id="formCheck-1" value="male" required><label class="form-check-label" for="formCheck-1" required>Male</label></div>
-                                                        <div class="form-check" style="padding-right: 213px;"><input class="form-check-input" type="radio" name="gender" id="formCheck-2" value="female"><label class="form-check-label" for="formCheck-2">Female</label></div>
-                                
-                                                  </div>
-                                                <div class="mb-3"><input class="form-control" type="text" id="symptom1" name="symptom1" placeholder="Symptom here" required></div>
-                                                <div class="mb-3"><input class="form-control" type="text" id="symptom2" name="symptom2" placeholder="Symptom here" required></div>
-                                                <div class="mb-3"><input class="form-control" type="text" id="symptom3" name="symptom3" placeholder="Symptom here" required></div>
-                                               
-                                                
-                                                
-                                                <div><button class="btn btn-primary d-block w-100" type="submit">Diagnose</button></div>
-                                            </form>
-                                           
-                                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                                <div class="card mb-5">
+                                    <div class="card-body p-sm-5">
+                                        
                                        
+                                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                            <table class="table my-0" id="dataTable">
+                                                <thead>
+                                                    
+                                                        <tr>
+                                            
+                                                            <td>ID</td>
+                                                            <td>Name</td>
+                                                            <td>Common Name</td>
+                                                            <td>Probability</td> 
+                                                        </tr>
+                                                    
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                    <tr   th:each="condition : ${conditions}">
+                                                        <p th:text="${error}"></p>
+                                                        <td th:text="${condition.id}"></td>
+                                                        <td th:text="${condition.name}"></td>
+                                                        <td th:text="${condition.commonName}"></td>
+                                                        <td th:text="${condition.probability}"></td>
+                                                       
+                                                        </tr>
+                                                        
+                                                    </tr>
+                                                                                      
+                                                   
+                                                    
+                                                </tbody>
+                                                
+                                            </table>
+                                          
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                             
                        
                     </div>

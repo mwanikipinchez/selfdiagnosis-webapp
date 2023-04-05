@@ -36,22 +36,14 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
                 <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
                     <div class="card mb-5">
                         <div class="card-body p-sm-5">
-                            <h2 class="text-center mb-4">New Appointment</h2>
-                            <form  th:action="@{/requestapointment}"  method="post" th:object="${appointment}">
-                                <div class="mb-3"><input class="form-control" type="hidden" id="patientEmail" name="patientEmail"  th:value="${#authentication.name}"></div>
-                                <div class="mb-3"><input class="form-control" type="text" id="title" name="title" placeholder="Appointment title" required></div>
-                                <div class="mb-3">
-                                    
-                                    <select id="doctorEmail" name="doctorEmail">
-                                        <option th:each="doctor : ${doctors}" name="doctorEmail" id="doctorEmail" th:field="*{doctorEmail}" th:value="${doctor.email}" th:text="${doctor.name}" required></option>
-                                      </select>
+                            <h2 class="text-center mb-4">New ToDo</h2>
+                            <form  th:action="@{/admintodo}"  method="post" th:object="${todo}">
+                                <div class="mb-3"><input class="form-control" type="hidden" id="user" name="user"  th:value="${#authentication.name}"></div>
+                                <div class="mb-3"><input class="form-control" type="text" id="activity" name="activity" placeholder="Activity Name" required></div>
+                                <div class="mb-3"><input class="form-control" type="time" id="time" name="time" placeholder="time" required></div>
                                 
-                                </div>
-
-                                <div class="mb-3"><input class="form-control" type="datetime-local" id="appointmentDate" name="appointmentDate" required></div>
-                               
                                 
-                                <div><button class="btn btn-primary d-block w-100" type="submit">Request Appointment</button></div>
+                                <div><button class="btn btn-primary d-block w-100" type="submit">Add</button></div>
                             </form>
                         </div>
                     </div>
