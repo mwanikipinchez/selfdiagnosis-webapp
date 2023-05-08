@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+//<<<<<<< HEAD
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model;
 
 import jakarta.persistence.*;
@@ -52,7 +52,7 @@ public class Doctor {
     private List<Role> roles = new ArrayList<>();
 
 }
-=======
+//=======
 //package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model;
 //
 //import jakarta.persistence.*;
@@ -122,4 +122,4 @@ public class Doctor {
 //    }
 //
 //}
->>>>>>> master
+//>>>>>>> master

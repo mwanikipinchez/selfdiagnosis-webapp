@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+//<<<<<<< HEAD
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.controller;
 
 
@@ -37,7 +37,7 @@ public class DoctorController {
 //    public String registration(@Valid @ModelAttribute("doctor") @RequestBody DoctorDTO doctor,
 //                               BindingResult result, Model model){
 //        Doctor existingDoctor = doctorService.findByEmail(doctor.getEmail());
-=======
+//=======
 //package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.controller;
 //
 //
@@ -83,7 +83,7 @@ public class DoctorController {
 //    public String registration(@Valid @ModelAttribute("doctor") DoctorDTO doctorDTO,
 //                               BindingResult result, Model model){
 //        Doctor existingDoctor = doctorService.findByEmail(doctorDTO.getEmail());
->>>>>>> master
+//>>>>>>> master
 //
 //        if(existingDoctor != null && existingDoctor.getEmail() != null && !existingDoctor.getEmail().isEmpty()){
 //            result.rejectValue("email", null,
@@ -91,7 +91,7 @@ public class DoctorController {
 //        }
 //
 //        if(result.hasErrors()){
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //            model.addAttribute("doctor", doctor);
 //            return "doctorSignup";
 //        }
@@ -125,7 +125,7 @@ public class DoctorController {
 
 
 }
-=======
+//=======
 //            model.addAttribute("doctor", doctorDTO);
 //            return "PatientSignup";
 //        }
@@ -147,4 +147,4 @@ public class DoctorController {
 //
 //
 //}
->>>>>>> master
+//>>>>>>> master

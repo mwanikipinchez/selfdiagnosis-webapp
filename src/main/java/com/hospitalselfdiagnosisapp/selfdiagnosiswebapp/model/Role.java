@@ -26,14 +26,14 @@ public class Role {
 
     @ManyToMany(mappedBy="roles")
     private List<Patient> patients;
-<<<<<<< HEAD
+//<<<<<<< HEAD
     @ManyToMany(mappedBy="roles")
     private List<Doctor> doctors;
 
     @ManyToMany(mappedBy="roles")
-=======
+//=======
 //    private List<Doctor> doctors;
->>>>>>> master
+//>>>>>>> master
     private List<Pharmacy> pharmacy;
 
 }

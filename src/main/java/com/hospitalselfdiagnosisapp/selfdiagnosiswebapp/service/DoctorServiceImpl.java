@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+//<<<<<<< HEAD
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.service;
 
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.DoctorDTO;
@@ -79,7 +79,7 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.findAll();
     }
 }
-=======
+//=======
 //package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.service;
 //
 //import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.DoctorDTO;
@@ -192,4 +192,4 @@ public class DoctorServiceImpl implements DoctorService {
 ////    public void deleteDoctor(Long id){
 ////        doctorRepository.deleteById(id);
 ////    }
->>>>>>> master
+//>>>>>>> master

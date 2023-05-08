@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+//<<<<<<< HEAD
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.service;
 
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.DoctorDTO;
@@ -15,7 +15,7 @@ public interface DoctorService {
 
     List<Doctor> findAllDoctors();
 }
-=======
+//=======
 //package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.service;
 //
 //import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.DoctorDTO;
@@ -26,4 +26,4 @@ public interface DoctorService {
 //    Doctor save(DoctorDTO registrationDTO);
 //    Doctor findByEmail(String email);
 //}
->>>>>>> master
+//>>>>>>> master
