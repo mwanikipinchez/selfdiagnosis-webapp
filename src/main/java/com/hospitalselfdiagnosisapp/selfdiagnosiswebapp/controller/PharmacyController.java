@@ -1,9 +1,9 @@
 package com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.controller;
 
 
-import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.DoctorDTO;
+//import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.DoctorDTO;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.dto.PharmacyDTO;
-import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Doctor;
+//import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Doctor;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.model.Pharmacy;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.repository.PharmacyRepository;
 import com.hospitalselfdiagnosisapp.selfdiagnosiswebapp.service.PharmacyService;
