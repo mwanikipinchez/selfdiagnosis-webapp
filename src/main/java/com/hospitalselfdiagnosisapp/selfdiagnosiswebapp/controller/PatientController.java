@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -995,6 +996,11 @@ public class PatientController {
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("listSymptoms", listSymptoms);
 
+//        PAGINATION AND SORTING OF THE RESULTS FROM THE DATABASE
+//        Page<InfermedicaSymptoms> allSysmptoms = infermedicaSymptomsRepository.findAll();
+        //method to return paginated results from a database
+
+
         return "infermedicaSymptoms";
     }
 
@@ -1113,7 +1119,7 @@ public class PatientController {
         headers.set("App-Id", appId);
         headers.set("App-Key", appKey);
 
-        if(infermedicaSymptom1 != null && infermedicaSymptom2 != null && infermedicaSymptom3 != null){
+        if(infermedicaSymptom1 != null && infermedicaSymptom2 != null && infermedicaSymptom3 != null && age >=1 && age <= 130){
 //            model.addAttribute("id3", infermedicaSymptom3.getId());
 //            model.addAttribute("id2", infermedicaSymptom2.getId());
 //            model.addAttribute("id1", infermedicaSymptom1.getId());
@@ -1165,11 +1171,7 @@ public class PatientController {
 //                 System.out.println("Condition probability: " + probability);
 //             }
 
-
-
-
-//
-        } else if(infermedicaSymptom1 != null && infermedicaSymptom2 != null && infermedicaSymptom3 == null){
+        } else if(infermedicaSymptom1 != null && infermedicaSymptom2 != null && infermedicaSymptom3 == null && age >=1 && age <= 130){
             //  model.addAttribute("id3", infermedicaSymptom3);
             model.addAttribute("id2", infermedicaSymptom2.getId());
             model.addAttribute("id1", infermedicaSymptom1.getId());
@@ -1221,7 +1223,7 @@ public class PatientController {
             //System.out.println(response.getBody());
 
 
-        } else if(infermedicaSymptom1 != null && infermedicaSymptom2 == null && infermedicaSymptom3 != null){
+        } else if(infermedicaSymptom1 != null && infermedicaSymptom2 == null && infermedicaSymptom3 != null && age >=1 && age <= 130){
             model.addAttribute("id3", infermedicaSymptom3.getId());
             //model.addAttribute("id2", infermedicaSymptom2);
             model.addAttribute("id1", infermedicaSymptom1.getId());
@@ -1263,7 +1265,7 @@ public class PatientController {
 //                 System.out.println("Condition common name: " + commonName);
 //                 System.out.println("Condition probability: " + probability);
 //             }
-        } else if(infermedicaSymptom1 != null && infermedicaSymptom2 == null && infermedicaSymptom3 == null){
+        } else if(infermedicaSymptom1 != null && infermedicaSymptom2 == null && infermedicaSymptom3 == null && age >=1 && age <= 130){
 //            model.addAttribute("id3", infermedicaSymptom3);
 //            model.addAttribute("id2", infermedicaSymptom2);
             model.addAttribute("id1", infermedicaSymptom1.getId());
@@ -1305,7 +1307,7 @@ public class PatientController {
 //                 System.out.println("Condition probability: " + probability);
 //             }
 
-        } else if(infermedicaSymptom1 == null && infermedicaSymptom2 != null && infermedicaSymptom3 != null){
+        } else if(infermedicaSymptom1 == null && infermedicaSymptom2 != null && infermedicaSymptom3 != null && age >=1 && age <= 130){
             model.addAttribute("id3", infermedicaSymptom3.getId());
             model.addAttribute("id2", infermedicaSymptom2.getId());
 
@@ -1347,7 +1349,7 @@ public class PatientController {
 //                 System.out.println("Condition common name: " + commonName);
 //                 System.out.println("Condition probability: " + probability);
 //             }
-        } else if(infermedicaSymptom1 == null && infermedicaSymptom2 != null && infermedicaSymptom3 == null){
+        } else if(infermedicaSymptom1 == null && infermedicaSymptom2 != null && infermedicaSymptom3 == null && age >=1 && age <= 130){
 
             model.addAttribute("id2", infermedicaSymptom2.getId());
 
@@ -1388,7 +1390,7 @@ public class PatientController {
 //                 System.out.println("Condition probability: " + probability);
 //             }
 
-        } else if(infermedicaSymptom1 == null && infermedicaSymptom2 == null && infermedicaSymptom3 != null){
+        } else if(infermedicaSymptom1 == null && infermedicaSymptom2 == null && infermedicaSymptom3 != null && age >=1 && age <= 130){
             model.addAttribute("id3", infermedicaSymptom3.getId());
 
             String jsonBody = "{\"sex\":\"" + gender + "\",\"age\":{\"value\":"  + age + "},\"evidence\":["
